@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask import jsonify
+import settings
 
 app = Flask(__name__)
 
@@ -18,4 +19,4 @@ def photo():
                            text='Not implemented yet')
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=settings.PORT)
