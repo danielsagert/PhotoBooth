@@ -4,15 +4,15 @@ from flask import jsonify
 app = Flask(__name__)
 
 @app.route('/api/')
-def hello_world():
+def api_index():
     return jsonify(result='PhotoBooth')
 
 @app.route('/')
-def test():
+def index():
    return app.send_static_file('index.html')
 
 @app.route('/photo')
-def test():
+def photo():
    return render_template('photo.html',
                            title='Last photo',
                            text='Not implemented yet')
