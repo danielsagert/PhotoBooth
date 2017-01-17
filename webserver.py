@@ -17,7 +17,7 @@ def index():
 
 @app.route('/photo')
 def photo():
-    cam.capture('/home/pi/PhotoBooth/static/photos')
+    cam.capture('/home/pi/PhotoBooth/static/photos/test.jpg')
     return render_template('photo.html',
                            title='Last photo',
                            text='Not implemented yet')
