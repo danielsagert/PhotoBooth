@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask import jsonify
+from flask import jsonify, url_for
 from picamera import PiCamera
 
 import settings
@@ -16,12 +16,12 @@ def index():
 
 @app.route('/photo')
 def photo():
-    camera = PiCamera()
-    camera.capture('/home/pi/PhotoBooth/static/photos/test.jpg')
-    camera.close()
+    with PiCamera() as camera:
+        camera.capture('/home/pi/PhotoBooth/static/photos/test.jpg')
+
     return render_template('photo.html',
-                           title='Last photo',
-                           text='Not implemented yet')
+                           title='Test photo',
+                           photo_url=url_for('static', filename='test.jpg'))
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=settings.PORT)
