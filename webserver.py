@@ -5,7 +5,6 @@ from picamera import PiCamera
 import settings
 
 app = Flask(__name__)
-camera = PiCamera()
 
 @app.route('/api/')
 def api_index():
@@ -17,6 +16,7 @@ def index():
 
 @app.route('/photo')
 def photo():
+    camera = PiCamera()
     camera.capture('/home/pi/PhotoBooth/static/photos/test.jpg')
     return render_template('photo.html',
                            title='Last photo',
