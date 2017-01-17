@@ -18,6 +18,7 @@ def index():
 def photo():
     camera = PiCamera()
     camera.capture('/home/pi/PhotoBooth/static/photos/test.jpg')
+    camera.close()
     return render_template('photo.html',
                            title='Last photo',
                            text='Not implemented yet')
