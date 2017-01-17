@@ -24,6 +24,7 @@ def photo(filename):
 def capture():
     filename = 'test.jpg'
     with PiCamera() as camera:
+        camera.resolution = (1280, 1024)
         camera.capture('/home/pi/PhotoBooth/static/photos/' + filename)
 
     return render_template('photo.html',
