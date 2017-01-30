@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask, render_template
 from flask import jsonify
 from picamera import PiCamera
@@ -25,6 +27,8 @@ def capture():
     filename = 'test.jpg'
     with PiCamera() as camera:
         camera.resolution = (1280, 1024)
+        # Camera warm-up time
+        time.sleep(2)
         camera.capture('/home/pi/PhotoBooth/static/photos/' + filename)
 
     return render_template('photo.html',
