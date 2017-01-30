@@ -10,6 +10,21 @@ sudo mkdir -p /home/pi/PhotoBooth/static/photos
 sudo chown -R pi:pi /home/pi/PhotoBooth/static/photos
 ```
 
+### Enable camera
+```
+sudo raspi-config
+```
+5 Interfacing Options -> P1 Camera
+ 
+```
+sudo apt-get install python-picamera
+```
+
+### Python Modules
+```
+sudo pip install flask, picamera
+```
+
 ### Install and setup samba
 ```
 sudo apt-get install samba samba-common-bin
@@ -36,21 +51,6 @@ sudo smbpasswd -a pi
 
 ```
 sudo /etc/init.d/samba restart
-```
-
-### Enable camera
-```
-sudo raspi-config
-```
-5 Interfacing Options -> P1 Camera
- 
-```
-sudo apt-get install python-picamera
-```
-
-### Python Modules
-```
-sudo pip install flask, picamera
 ```
 
 ### Install Apache
