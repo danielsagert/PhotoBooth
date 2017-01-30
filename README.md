@@ -52,3 +52,7 @@ sudo apt-get install python-picamera
 ```
 sudo pip install flask, picamera
 ```
+
+### Install Apache
+Follow [this documentation](https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md).
+
