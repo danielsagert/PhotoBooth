@@ -1,3 +1,5 @@
+import glob
+import os
 import time
 
 from flask import Flask, render_template
@@ -10,14 +12,21 @@ app = Flask(__name__)
 
 @app.route('/api/')
 def api_index():
-    return jsonify(result='PhotoBooth')
+    return jsonify(name='PhotoBooth')
 
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/photo/<filename>')
+@app.route('/api/photos')
+def photos():
+    files = glob.glob("photos/*.jpg")
+    files.sort(key=os.path.getmtime)
+    return jsonify(photos=files)
+
+
+@app.route('/photos/<filename>')
 def photo(filename):
     return app.send_static_file('photos/' + filename)
 
@@ -29,7 +38,7 @@ def capture():
         camera.resolution = (1280, 1024)
         # Camera warm-up time
         time.sleep(2)
-        camera.capture('/home/pi/PhotoBooth/static/photos/' + filename)
+        camera.capture('photos/' + filename)
 
     return render_template('photo.html',
                            title='Test photo',
