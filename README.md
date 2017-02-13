@@ -56,3 +56,11 @@ sudo /etc/init.d/samba restart
 ### Install Apache
 Follow [this documentation](https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md).
 
+### Crontab
+```
+sudo crontab -e
+```
+Add lines for server start-up after boot.
+```
+@reboot python /home/pi/PhotoBooth/webserver.py
+```
