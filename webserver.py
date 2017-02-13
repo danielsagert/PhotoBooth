@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from flask import jsonify
 from picamera import PiCamera
 
-import settings
+from settings import PORT, ROOT_DIRECTORY
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def index():
 
 @app.route('/api/photos')
 def photos():
-    files = glob.glob("photos/*.jpg")
+    files = glob.glob(ROOT_DIRECTORY + "/photos/*.jpg")
     files.sort(key=os.path.getmtime)
     filenames = [os.path.basename(f) for f in files]
     return jsonify(photos=filenames)
@@ -39,11 +39,11 @@ def capture():
         camera.resolution = (1280, 1024)
         # Camera warm-up time
         time.sleep(2)
-        camera.capture('photos/' + filename)
+        camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
 
     return render_template('photo.html',
                            title='Test photo',
                            filename=filename)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=settings.PORT)
+    app.run(debug=True, host='0.0.0.0', port=PORT)
