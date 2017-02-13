@@ -23,7 +23,8 @@ def index():
 def photos():
     files = glob.glob("photos/*.jpg")
     files.sort(key=os.path.getmtime)
-    return jsonify(photos=files)
+    filenames = [os.path.basename(f) for f in files]
+    return jsonify(photos=filenames)
 
 
 @app.route('/photos/<filename>')
