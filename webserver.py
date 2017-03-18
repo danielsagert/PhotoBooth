@@ -1,8 +1,9 @@
 import glob
 import os
 import time
+from datetime import datetime
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, send_from_directory
 from flask import jsonify
 from picamera import PiCamera
 
@@ -17,36 +18,44 @@ def apply_headers(response):
     return response
 
 
-@app.route('/api/photos')
-def photos():
-    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
-    files.sort(key=os.path.getmtime)
-    filenames = [os.path.basename(f) for f in files]
-    return jsonify(photos=filenames)
-
-
 @app.route('/')
 def index():
+    print('Deliver index page')
+
     return app.send_static_file('index.html')
-
-
-@app.route('/photos/<filename>')
-def photo(filename):
-    return send_from_directory('photos', filename)
 
 
 @app.route('/capture')
 def capture():
-    filename = 'test.jpg'
+    date_and_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    filename = 'photo_' + date_and_time + '.jpg'
+
+    print("Capture photo: ", filename)
+
     with PiCamera() as camera:
         camera.resolution = (1280, 1024)
         # Camera warm-up time
         time.sleep(2)
         camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
 
-    return render_template('photo.html',
-                           title='Test photo',
-                           filename=filename)
+    return jsonify(filename=filename)
+
+
+@app.route('/photos')
+def photos():
+    print('Deliver filenames all photos')
+
+    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
+    files.sort(key=os.path.getmtime)
+    filenames = [os.path.basename(f) for f in files]
+    return jsonify(photos=filenames)
+
+
+@app.route('/photos/<filename>')
+def photo(filename):
+    print('Deliver photo: ', filename)
+
+    return send_from_directory('photos', filename)
 
 
 if __name__ == '__main__':
