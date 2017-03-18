@@ -1,13 +1,11 @@
 import glob
 import os
-import time
-from datetime import datetime
 
 from flask import Flask, send_from_directory
 from flask import jsonify
-from picamera import PiCamera
 
-from settings import PORT, ROOT_DIRECTORY
+from PhotoBooth import shoot
+from Settings import PORT, ROOT_DIRECTORY
 
 app = Flask(__name__)
 
@@ -27,17 +25,7 @@ def index():
 
 @app.route('/capture')
 def capture():
-    date_and_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    filename = 'photo_' + date_and_time + '.jpg'
-
-    print("Capture photo: ", filename)
-
-    with PiCamera() as camera:
-        camera.resolution = (1280, 1024)
-        # Camera warm-up time
-        time.sleep(2)
-        camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
-
+    filename = shoot()
     return jsonify(filename=filename)
 
 
