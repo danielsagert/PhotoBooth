@@ -17,22 +17,17 @@ def apply_headers(response):
     return response
 
 
-@app.route('/api/')
-def api_index():
-    return jsonify(name='PhotoBooth')
-
-
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
-
-
 @app.route('/api/photos')
 def photos():
     files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
     files.sort(key=os.path.getmtime)
     filenames = [os.path.basename(f) for f in files]
     return jsonify(photos=filenames)
+
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route('/photos/<filename>')
