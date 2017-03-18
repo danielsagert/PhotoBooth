@@ -46,7 +46,7 @@ def photos():
     print('Deliver filenames all photos')
 
     files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
-    files.sort(key=os.path.getmtime)
+    files.sort(key=os.path.getmtime, reverse=True)
     filenames = [os.path.basename(f) for f in files]
     return jsonify(photos=filenames)
 
