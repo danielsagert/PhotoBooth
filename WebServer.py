@@ -10,6 +10,10 @@ from Settings import PORT, ROOT_DIRECTORY
 app = Flask(__name__)
 
 
+def start():
+    app.run(debug=True, host='0.0.0.0', port=PORT)
+
+
 @app.after_request
 def apply_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
@@ -44,7 +48,3 @@ def photo(filename):
     print('Deliver photo: ', filename)
 
     return send_from_directory('photos', filename)
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=PORT)
