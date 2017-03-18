@@ -2,7 +2,7 @@ import glob
 import os
 import time
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flask import jsonify
 from picamera import PiCamera
 
@@ -16,9 +16,11 @@ def apply_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
+
 @app.route('/api/')
 def api_index():
     return jsonify(name='PhotoBooth')
+
 
 @app.route('/')
 def index():
@@ -27,7 +29,7 @@ def index():
 
 @app.route('/api/photos')
 def photos():
-    files = glob.glob(ROOT_DIRECTORY + "/photos/*.jpg")
+    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
     files.sort(key=os.path.getmtime)
     filenames = [os.path.basename(f) for f in files]
     return jsonify(photos=filenames)
@@ -35,7 +37,7 @@ def photos():
 
 @app.route('/photos/<filename>')
 def photo(filename):
-    return app.send_static_file('photos/' + filename)
+    return send_from_directory('photos', filename)
 
 
 @app.route('/capture')
@@ -50,6 +52,7 @@ def capture():
     return render_template('photo.html',
                            title='Test photo',
                            filename=filename)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=PORT)
