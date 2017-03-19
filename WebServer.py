@@ -8,7 +8,6 @@ from PhotoBooth import shoot, lastPhoto
 from Settings import ROOT_DIRECTORY, PORT
 
 app = Flask(__name__)
-lastPhoto = ''
 
 
 def start():
