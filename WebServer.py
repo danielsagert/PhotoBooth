@@ -6,14 +6,14 @@ from flask import jsonify
 from flask_socketio import SocketIO, send
 
 from PhotoBooth import shoot
-from Settings import ROOT_DIRECTORY
+from Settings import ROOT_DIRECTORY, PORT
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
 
 def start():
-    socketio.run(app, host='0.0.0.0')
+    socketio.run(app, host='0.0.0.0', port=PORT, debug=True)
 
 
 @app.after_request
