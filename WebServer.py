@@ -54,4 +54,4 @@ def photo(filename):
 
 @app.route('/photos/last')
 def new_photo():
-    return lastPhoto
+    return jsonify(filename=lastPhoto)
