@@ -33,6 +33,7 @@ def index():
 @app.route('/capture')
 def capture():
     filename = shoot()
+    emit('capture')
     return jsonify(filename=filename)
 
 
@@ -53,21 +54,11 @@ def photo(filename):
     return send_from_directory('photos', filename)
 
 
-@socketio.on('my event', namespace='/test')
-def test_message(message):
-    emit('my response', {'data': message['data']})
-
-
-@socketio.on('my broadcast event', namespace='/test')
-def test_message(message):
-    emit('my response', {'data': message['data']}, broadcast=True)
-
-
 @socketio.on('connect', namespace='/test')
 def test_connect():
-    emit('my response', {'data': 'Connected'})
+    print('WebSocket client connected')
 
 
 @socketio.on('disconnect', namespace='/test')
 def test_disconnect():
-    print('Client disconnected')
+    print('WebSocket client disconnected')
