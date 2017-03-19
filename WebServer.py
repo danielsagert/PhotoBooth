@@ -8,6 +8,7 @@ from PhotoBooth import shoot
 from Settings import ROOT_DIRECTORY, PORT
 
 app = Flask(__name__)
+lastPhoto = ''
 
 
 def start():
@@ -30,6 +31,7 @@ def index():
 @app.route('/capture')
 def capture():
     filename = shoot()
+    lastPhoto = filename
     return jsonify(filename=filename)
 
 
@@ -48,3 +50,8 @@ def photo(filename):
     print('Deliver photo: ', filename)
 
     return send_from_directory('photos', filename)
+
+
+@app.route('/photos/last')
+def new_photo():
+    return lastPhoto
