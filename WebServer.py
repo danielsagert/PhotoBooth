@@ -3,17 +3,15 @@ import os
 
 from flask import Flask, send_from_directory
 from flask import jsonify
-from flask_socketio import SocketIO, send
 
 from PhotoBooth import shoot
 from Settings import ROOT_DIRECTORY, PORT
 
 app = Flask(__name__)
-socketio = SocketIO(app)
 
 
 def start():
-    socketio.run(app, host='0.0.0.0', port=PORT, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
 
 
 @app.after_request
@@ -32,7 +30,6 @@ def index():
 @app.route('/capture')
 def capture():
     filename = shoot()
-    send('capture')
     return jsonify(filename=filename)
 
 

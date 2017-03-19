@@ -22,7 +22,7 @@ sudo apt-get install python-picamera
 
 ### Python Modules
 ```
-sudo pip install flask, flask-socketio, picamera
+sudo pip install flask, picamera
 ```
 
 ### Install and setup samba
