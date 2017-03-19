@@ -36,4 +36,4 @@ def get_photos():
 def get_last_photo():
     filenames = get_photos()
     if len(filenames) > 0: return filenames[0]
-    return None
+    return ''
