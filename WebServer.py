@@ -54,11 +54,11 @@ def photo(filename):
     return send_from_directory('photos', filename)
 
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect')
 def test_connect():
     print('WebSocket client connected')
 
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect')
 def test_disconnect():
     print('WebSocket client disconnected')
