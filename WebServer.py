@@ -1,11 +1,8 @@
-import glob
-import os
-
 from flask import Flask, send_from_directory
 from flask import jsonify
 
-from PhotoBooth import shoot, lastPhoto
-from Settings import ROOT_DIRECTORY, PORT
+from PhotoBooth import shoot, get_photos, get_last_photo
+from Settings import PORT
 
 app = Flask(__name__)
 
@@ -36,20 +33,17 @@ def capture():
 @app.route('/photos')
 def photos():
     print('Deliver filenames all photos')
-
-    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
-    files.sort(key=os.path.getmtime, reverse=True)
-    filenames = [os.path.basename(f) for f in files]
+    filenames = get_photos()
     return jsonify(photos=filenames)
 
 
 @app.route('/photos/<filename>')
 def photo(filename):
     print('Deliver photo: ', filename)
-
     return send_from_directory('photos', filename)
 
 
 @app.route('/photos/last')
 def new_photo():
-    return jsonify(filename=lastPhoto)
+    filename = get_last_photo
+    return jsonify(filename=filename)

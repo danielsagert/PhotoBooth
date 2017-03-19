@@ -1,11 +1,11 @@
+import glob
+import os
 from datetime import datetime
 from time import sleep
 
 from picamera import PiCamera
 
 from Settings import ROOT_DIRECTORY
-
-lastPhoto = ''
 
 
 def shoot():
@@ -18,11 +18,22 @@ def shoot():
         sleep(2)
         camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
 
-    lastPhoto = filename
-
     return filename
 
 
 def get_filename():
     date_and_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     return 'photo_' + date_and_time + '.jpg'
+
+
+def get_photos():
+    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
+    files.sort(key=os.path.getmtime, reverse=True)
+    filenames = [os.path.basename(f) for f in files]
+    return filenames
+
+
+def last_photo():
+    filenames = get_photos()
+    if len(filenames) > 0: return filenames[0]
+    return None
