@@ -3,18 +3,17 @@ import os
 
 from flask import Flask, send_from_directory
 from flask import jsonify
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, send
 
 from PhotoBooth import shoot
-from Settings import PORT, ROOT_DIRECTORY
+from Settings import ROOT_DIRECTORY
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
 
 def start():
-    app.run(debug=True, host='0.0.0.0', port=PORT)
-    socketio.run(app)
+    socketio.run(app, host='0.0.0.0')
 
 
 @app.after_request
@@ -33,7 +32,7 @@ def index():
 @app.route('/capture')
 def capture():
     filename = shoot()
-    emit('capture')
+    send('capture')
     return jsonify(filename=filename)
 
 
@@ -52,13 +51,3 @@ def photo(filename):
     print('Deliver photo: ', filename)
 
     return send_from_directory('photos', filename)
-
-
-@socketio.on('connect')
-def test_connect():
-    print('WebSocket client connected')
-
-
-@socketio.on('disconnect')
-def test_disconnect():
-    print('WebSocket client disconnected')
