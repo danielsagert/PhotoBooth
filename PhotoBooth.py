@@ -5,6 +5,8 @@ from picamera import PiCamera
 
 from Settings import ROOT_DIRECTORY
 
+lastPhoto = ''
+
 
 def shoot():
     filename = get_filename()
@@ -15,6 +17,8 @@ def shoot():
         # Camera warm-up time
         sleep(2)
         camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
+
+    lastPhoto = filename
 
     return filename
 

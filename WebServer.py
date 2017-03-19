@@ -4,7 +4,7 @@ import os
 from flask import Flask, send_from_directory
 from flask import jsonify
 
-from PhotoBooth import shoot
+from PhotoBooth import shoot, lastPhoto
 from Settings import ROOT_DIRECTORY, PORT
 
 app = Flask(__name__)
@@ -31,7 +31,6 @@ def index():
 @app.route('/capture')
 def capture():
     filename = shoot()
-    lastPhoto = filename
     return jsonify(filename=filename)
 
 
