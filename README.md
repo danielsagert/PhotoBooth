@@ -18,7 +18,7 @@ sudo raspi-config
 *5 Interfacing Options -> P1 Camera*
 
 **Enable SPI**  
-*7 Advanced Options -> SPI -> Yes*
+*5 Interfacing Options -> SPI*
  
 ```
 sudo apt-get install python-picamera
