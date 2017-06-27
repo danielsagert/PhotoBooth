@@ -31,8 +31,8 @@ sudo pip install flask, picamera
 
 ### Install PiFace Digital Modules ###
 ```
+sudo apt-get install python3-pifacedigitalio
 sudo apt-get install python3-pifacedigital-emulator
-sudo apt-get install python3-pifacedigital-scratch-handler
 ```
 
 ### Install and setup samba
