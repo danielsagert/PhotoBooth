@@ -10,11 +10,15 @@ sudo mkdir -p /home/pi/PhotoBooth/static/photos
 sudo chown -R pi:pi /home/pi/PhotoBooth/static/photos
 ```
 
-### Enable camera
+### Raspi Config
 ```
 sudo raspi-config
 ```
-5 Interfacing Options -> P1 Camera
+**Enable camera:**  
+*5 Interfacing Options -> P1 Camera*
+
+**Enable SPI**  
+*7 Advanced Options -> SPI -> Yes*
  
 ```
 sudo apt-get install python-picamera
@@ -23,6 +27,12 @@ sudo apt-get install python-picamera
 ### Python Modules
 ```
 sudo pip install flask, picamera
+```
+
+### Install PiFace Digital Modules ###
+```
+sudo apt-get install python3-pifacedigital-emulator
+sudo apt-get install python3-pifacedigital-scratch-handler
 ```
 
 ### Install and setup samba
