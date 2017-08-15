@@ -1,7 +1,7 @@
 from flask import Flask, send_from_directory
 from flask import jsonify
 
-from PhotoBooth import shoot, get_photos, get_last_photo
+from Cam import shoot, get_photos, get_last_photo
 from Settings import PORT
 
 app = Flask(__name__)
