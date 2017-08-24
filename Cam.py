@@ -3,7 +3,11 @@ import os
 from datetime import datetime
 from time import sleep
 
-from picamera import PiCamera
+try:
+    from picamera import PiCamera
+except ImportError, e:
+    print("picamera not available")
+    pass
 
 from Settings import ROOT_DIRECTORY
 
