@@ -5,7 +5,7 @@ from time import sleep
 
 try:
     from picamera import PiCamera
-except ImportError, e:
+except ImportError:
     print("picamera not available")
     pass
 

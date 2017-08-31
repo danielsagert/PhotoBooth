@@ -26,7 +26,7 @@ sudo apt-get install python-picamera
 
 ### Python Modules
 ```
-sudo pip install flask, picamera
+sudo pip install flask, picamera, cherrypy
 ```
 
 ### Install PiFace Digital Modules ###

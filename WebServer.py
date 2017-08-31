@@ -1,3 +1,4 @@
+import cherrypy
 from flask import Flask, send_from_directory
 from flask import jsonify
 
@@ -5,10 +6,6 @@ from Cam import shoot, get_photos, get_last_photo
 from Settings import PORT
 
 app = Flask(__name__)
-
-
-def start():
-    app.run(host='0.0.0.0', port=PORT, debug=True)
 
 
 @app.after_request
@@ -20,7 +17,6 @@ def apply_headers(response):
 @app.route('/')
 def index():
     print('Deliver index page')
-
     return app.send_static_file('index.html')
 
 
@@ -47,3 +43,24 @@ def photo(filename):
 def new_photo():
     filename = get_last_photo()
     return jsonify(filename=filename)
+
+
+def run_server():
+    # Mount the WSGI callable object (app) on the root directory
+    cherrypy.tree.graft(app, '/')
+
+    # Set the configuration of the web server
+    cherrypy.config.update({
+        'engine.autoreload_on': True,
+        'log.screen': True,
+        'server.socket_port': PORT,
+        'server.socket_host': '0.0.0.0'
+    })
+
+    # Start the CherryPy WSGI web server
+    cherrypy.engine.start()
+    cherrypy.engine.block()
+
+
+if __name__ == "__main__":
+    run_server()
