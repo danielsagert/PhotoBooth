@@ -20,7 +20,7 @@ class UI {
     }
 
     fetchPhotos() {
-        fetch('http://localhost:5000/photos')
+        fetch('/photos')
             .then(response => response.json())
             .then(json => UI.setPhotos(this.container, json.filenames));
     }
