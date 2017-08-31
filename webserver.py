@@ -2,8 +2,8 @@ import cherrypy
 from flask import Flask, send_from_directory
 from flask import jsonify
 
-from Cam import shoot, get_photos, get_last_photo
-from Settings import PORT
+from cam import shoot, get_photos, get_last_photo
+from settings import PORT
 
 app = Flask(__name__)
 

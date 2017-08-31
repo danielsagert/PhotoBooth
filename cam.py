@@ -9,7 +9,7 @@ except ImportError:
     print("picamera not available")
     pass
 
-from Settings import ROOT_DIRECTORY
+from settings import ROOT_DIRECTORY
 
 
 def shoot():
