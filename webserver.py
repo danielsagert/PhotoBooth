@@ -30,7 +30,7 @@ def capture():
 def photos():
     print('Deliver filenames all photos')
     filenames = get_photos()
-    return jsonify(photos=filenames)
+    return jsonify(filenames=filenames)
 
 
 @app.route('/photos/<filename>')

@@ -1,0 +1,23 @@
+<script>
+    class PhotoBoothImage extends HTMLElement {
+        constructor() {
+            super();
+            this.img = document.createElement('img');
+            this.img.src = "/photos/" + this.getAttribute('filename');
+        }
+
+        connectedCallback() {
+            this.appendChild(this.img);
+        }
+
+        static get observedAttributes() {
+            return ['filename'];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            this.img.src = "/photos/" + newValue;
+        }
+    }
+
+    customElements.define('photo-booth-image', PhotoBoothImage);
+</script>
