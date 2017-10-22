@@ -19,9 +19,13 @@ class UI {
     }
 
     fetchPhotos() {
+        console.log('Fetch photos...');
+
         fetch('/photos')
             .then(response => response.json())
             .then(json => UI.setPhotos(this.container, json.filenames));
+
+        console.log('Photos fetched!');
     }
 }
 
