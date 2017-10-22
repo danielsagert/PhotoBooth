@@ -5,12 +5,12 @@ class UI {
         document.querySelector('body').appendChild(this.container);
     }
 
-    setPhotos(filenames) {
+    setPhotos(self, filenames) {
         filenames.forEach(function (filename) {
             let img = document.createElement('img');
             img.setAttribute('src', '/photos/' + filename);
             img.setAttribute('alt', filename);
-            this.container.appendChild(img);
+            self.container.appendChild(img);
         });
     }
 
@@ -40,11 +40,10 @@ class UI {
 
     fetchPhotos() {
         this.container.innerHTML = '';
-        let self = this;
 
         fetch('/photos')
             .then(response => response.json())
-            .then(json => self.setPhotos(json.filenames));
+            .then(json => this.setPhotos(json.filenames));
 
         console.log('Photos fetched!');
     }
