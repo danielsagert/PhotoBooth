@@ -26,13 +26,24 @@ class UI {
     }
 
     updateContainer() {
-        let remoteFilename = this.getLastFilename();
-        let localFilename = this.container.firstChild.alt;
+        let updateRequired = false;
 
-        if (localFilename === remoteFilename) {
-            console.log('Not new file available');
+        if (!this.container.hasChildNodes()) {
+            updateRequired = true;
         } else {
-            console.log('New file available');
+            let remoteFilename = this.getLastFilename();
+            let localFilename = this.container.firstChild.alt;
+
+            if (localFilename === remoteFilename) {
+                console.log('No new file available');
+            } else {
+                console.log('New file available');
+            }
+        }
+
+        if (updateRequired) {
+            console.log("Update required");
+            this.fetchPhotos();
         }
     }
 
