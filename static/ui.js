@@ -30,6 +30,7 @@ class UI {
                 let localFilename = this.container.firstChild.alt;
 
                 if (localFilename === remoteFilename) {
+                    console.log("No new file available");
                     return;
                 }
 
