@@ -9,7 +9,7 @@ body {
 }
 
 #photo-container img:first-child {
-    width: 77%;
+    height: 100%;
     margin: 5px;
 }
 
