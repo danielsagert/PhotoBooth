@@ -21,7 +21,7 @@ class UI {
     createContainer() {
         let container = document.createElement('div');
         container.id = 'photo-container';
-        document.querySelector('body').appendChild(this.container);
+        document.querySelector('body').appendChild(container);
     }
 
     getLastFilename() {
