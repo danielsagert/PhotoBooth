@@ -40,16 +40,18 @@ class UI {
 
     fetchPhotos() {
         this.container.innerHTML = '';
+        let self = this;
 
         fetch('/photos')
             .then(response => response.json())
-            .then(json => this.setPhotos(json.filenames));
+            .then(json => self.setPhotos(json.filenames));
 
         console.log('Photos fetched!');
     }
 }
 
 let ui = new UI();
+
 setInterval(() => {
     ui.update();
 }, 3000);
