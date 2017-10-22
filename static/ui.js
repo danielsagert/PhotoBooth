@@ -34,6 +34,8 @@ class UI {
             let remoteFilename = this.getLastFilename();
             let localFilename = this.container.firstChild.alt;
 
+            console.log('remote: ' + remoteFilename + ', local: ' + localFilename);
+
             if (localFilename === remoteFilename) {
                 console.log('No new file available');
             } else {
