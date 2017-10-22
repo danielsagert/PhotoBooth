@@ -1,8 +1,8 @@
 class UI {
     constructor() {
         this.createContainer();
-        // setInterval(this.fetchPhotos(this.container), 1000);
-        var self = this;
+
+        let self = this;
         setInterval(() => {
             self.fetchPhotos(self.container);
         }, 1000);
