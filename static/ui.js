@@ -12,6 +12,8 @@ class UI {
             img.setAttribute('alt', filename);
             self.container.appendChild(img);
         });
+
+        console.log('Photos loaded');
     }
 
     update() {
@@ -27,13 +29,11 @@ class UI {
                 let remoteFilename = json.filename;
                 let localFilename = this.container.firstChild.alt;
 
-                console.log('Local filename: ' + remoteFilename + ', remote filename: ' + remoteFilename);
-
                 if (localFilename === remoteFilename) {
                     return;
                 }
 
-                console.log('New file available');
+                console.log('New file available: ' + remoteFilename);
                 this.fetchPhotos();
             });
     }
@@ -44,8 +44,6 @@ class UI {
         fetch('/photos')
             .then(response => response.json())
             .then(json => this.setPhotos(this, json.filenames));
-
-        console.log('Photos fetched!');
     }
 }
 
