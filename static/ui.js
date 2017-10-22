@@ -4,7 +4,7 @@ class UI {
 
         let self = this;
         setInterval(() => {
-            self.updateContainer();
+            self.update();
         }, 3000);
     }
 
@@ -25,37 +25,26 @@ class UI {
         document.querySelector('body').appendChild(this.container);
     }
 
-    updateContainer() {
-        let updateRequired = false;
-
+    update() {
         if (!this.container.hasChildNodes()) {
-            updateRequired = true;
-        } else {
-            let remoteFilename = this.getLastFilename();
-            let localFilename = this.container.firstChild.alt;
-
-            console.log('remote: ' + remoteFilename + ', local: ' + localFilename);
-
-            if (localFilename === remoteFilename) {
-                console.log('No new file available');
-            } else {
-                console.log('New file available');
-            }
-        }
-
-        if (updateRequired) {
-            console.log("Update required");
+            console.log("Container is empty");
             this.fetchPhotos();
+            return;
         }
-    }
 
-    getLastFilename() {
-        return fetch('/photos/last')
+        fetch('/photos/last')
             .then(response => response.json())
             .then((json) => {
-                let filename = json.filename;
-                console.log('Latest filename: ' + filename);
-                return filename;
+                let remoteFilename = json.filename;
+                let localFilename = this.container.firstChild.alt;
+
+                console.log('Local filename: ' + remoteFilename + ', remote filename: ' + remoteFilename);
+
+                if (localFilename === remoteFilename) {
+                    console.log('No new file available');
+                } else {
+                    console.log('New file available');
+                }
             });
     }
 
