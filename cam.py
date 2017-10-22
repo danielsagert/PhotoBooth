@@ -14,13 +14,14 @@ from settings import ROOT_DIRECTORY
 
 def shoot():
     filename = get_filename()
-    print("Capture photo: ", filename)
 
     with PiCamera() as camera:
         camera.resolution = (1280, 1024)
         # Camera warm-up time
         sleep(2)
-        camera.capture(ROOT_DIRECTORY + '/photos/' + filename)
+        photos_path = ROOT_DIRECTORY + '/photos/' + filename
+        camera.capture(photos_path)
+        print("Photo captured: ", photos_path)
 
     return filename
 
