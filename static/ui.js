@@ -41,14 +41,17 @@ class UI {
                 console.log('Local filename: ' + remoteFilename + ', remote filename: ' + remoteFilename);
 
                 if (localFilename === remoteFilename) {
-                    console.log('No new file available');
-                } else {
-                    console.log('New file available');
+                    return;
                 }
+
+                console.log('New file available');
+                this.fetchPhotos();
             });
     }
 
     fetchPhotos() {
+        this.container.innerHTML = '';
+
         fetch('/photos')
             .then(response => response.json())
             .then(json => UI.setPhotos(json.filenames));
