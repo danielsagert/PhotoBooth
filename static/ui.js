@@ -1,11 +1,8 @@
 class UI {
     constructor() {
-        this.createContainer();
-
-        let self = this;
-        setInterval(() => {
-            self.update();
-        }, 3000);
+        this.container = document.createElement('div');
+        this.container.id = 'photo-container';
+        document.querySelector('body').appendChild(this.container);
     }
 
     setPhotos(filenames) {
@@ -15,12 +12,6 @@ class UI {
             img.setAttribute('alt', filename);
             this.container.appendChild(img);
         });
-    }
-
-    createContainer() {
-        this.container = document.createElement('div');
-        this.container.id = 'photo-container';
-        document.querySelector('body').appendChild(this.container);
     }
 
     update() {
@@ -58,4 +49,7 @@ class UI {
     }
 }
 
-new UI();
+let ui = new UI();
+setInterval(() => {
+    ui.update();
+}, 3000);
