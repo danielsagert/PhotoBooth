@@ -10,6 +10,7 @@ except ImportError:
     pass
 
 from settings import ROOT_DIRECTORY
+from settings import MAX_PHOTOS
 
 
 def shoot():
@@ -32,7 +33,7 @@ def get_filename():
 
 
 def get_photos():
-    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
+    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')[:MAX_PHOTOS]
     files.sort(key=os.path.getmtime, reverse=True)
     filenames = [os.path.basename(f) for f in files]
     return filenames
