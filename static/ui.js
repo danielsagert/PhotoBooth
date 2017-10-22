@@ -4,11 +4,13 @@ class UI {
 
         let self = this;
         setInterval(() => {
-            self.fetchPhotos(self.container);
+            self.getLastFilename();
         }, 3000);
     }
 
-    static setPhotos(container, filenames) {
+    static setPhotos(filenames) {
+        let container = document.getElementById('photo-container');
+
         filenames.forEach(function (filename) {
             let img = document.createElement('img');
             img.setAttribute('src', '/photos/' + filename);
@@ -17,17 +19,25 @@ class UI {
     }
 
     createContainer() {
-        this.container = document.createElement('div');
-        this.container.id = 'photo-container';
+        let container = document.createElement('div');
+        container.id = 'photo-container';
         document.querySelector('body').appendChild(this.container);
     }
 
-    fetchPhotos(container) {
-        console.log('Fetch photos...');
+    getLastFilename() {
+        fetch('/photos/last')
+            .then(response => response.json())
+            .then((json) => {
+                let filename = json.filename;
+                console.log('Latest filename: ');
+                return filename;
+            });
+    }
 
+    fetchPhotos() {
         fetch('/photos')
             .then(response => response.json())
-            .then(json => UI.setPhotos(container, json.filenames));
+            .then(json => UI.setPhotos(json.filenames));
 
         console.log('Photos fetched!');
     }
