@@ -8,14 +8,12 @@ class UI {
         }, 3000);
     }
 
-    static setPhotos(filenames) {
-        let container = document.getElementById('photo-container');
-
+    setPhotos(filenames) {
         filenames.forEach(function (filename) {
             let img = document.createElement('img');
             img.setAttribute('src', '/photos/' + filename);
             img.setAttribute('alt', filename);
-            container.appendChild(img);
+            this.container.appendChild(img);
         });
     }
 
@@ -54,7 +52,7 @@ class UI {
 
         fetch('/photos')
             .then(response => response.json())
-            .then(json => UI.setPhotos(json.filenames));
+            .then(json => this.setPhotos(json.filenames));
 
         console.log('Photos fetched!');
     }
