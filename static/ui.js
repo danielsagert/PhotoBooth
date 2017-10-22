@@ -5,7 +5,7 @@ class UI {
         let self = this;
         setInterval(() => {
             self.fetchPhotos(self.container);
-        }, 1000);
+        }, 3000);
     }
 
     static setPhotos(container, filenames) {
