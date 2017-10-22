@@ -6,9 +6,11 @@ class UI {
 
     static setPhotos(container, filenames) {
         filenames.forEach(function (filename) {
-            let img = document.createElement('photo-booth-image');
-            img.setAttribute('filename', filename);
+            /*let img = document.createElement('photo-booth-image');
+            img.setAttribute('filename', filename);*/
 
+            let img = document.createElement('img');
+            img.setAttribute('src', '/photos/' + filename);
             container.appendChild(img);
         });
     }

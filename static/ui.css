@@ -1,15 +1,16 @@
+body {
+    margin: 0;
+}
+
 #photo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-#photo-container photo-booth-image:first-child img {
-    width: 60%;
-}
-
-#photo-container photo-booth-image img {
-    width: 150px;
+#photo-container img {
+    width: 10%;
     float: left;
     margin: 0 5px 5px 0;
+}
+
+#photo-container img:first-child {
+    width: 78%;
 }
