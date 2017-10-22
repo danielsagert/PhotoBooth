@@ -1,7 +1,7 @@
 class UI {
     constructor() {
         this.createContainer();
-        setInterval(this.fetchPhotos(), 1000);
+        setInterval(this.fetchPhotos(this.container), 1000);
     }
 
     static setPhotos(container, filenames) {
@@ -15,15 +15,15 @@ class UI {
     createContainer() {
         this.container = document.createElement('div');
         this.container.id = 'photo-container';
-        document.querySelector('body').appendChild(this.container);
+        document.querySelector('body').appendChild(self.container);
     }
 
-    fetchPhotos() {
+    fetchPhotos(container) {
         console.log('Fetch photos...');
 
         fetch('/photos')
             .then(response => response.json())
-            .then(json => UI.setPhotos(this.container, json.filenames));
+            .then(json => UI.setPhotos(container, json.filenames));
 
         console.log('Photos fetched!');
     }
