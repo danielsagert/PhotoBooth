@@ -20,7 +20,7 @@ def shoot():
         camera.resolution = (1280, 1024)
         # Camera warm-up time
         sleep(2)
-        photos_path = ROOT_DIRECTORY + '/photos/' + filename
+        photos_path = ROOT_DIRECTORY + '/static/photos/' + filename
         camera.capture(photos_path)
         print('Photo captured: ', photos_path)
 
@@ -33,7 +33,7 @@ def get_filename():
 
 
 def get_photos():
-    files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
+    files = glob.glob(ROOT_DIRECTORY + '/static/photos/*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
     del files[MAX_PHOTOS:]
     filenames = [os.path.basename(f) for f in files]

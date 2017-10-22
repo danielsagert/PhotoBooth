@@ -1,5 +1,5 @@
 import cherrypy
-from flask import Flask, send_from_directory
+from flask import Flask
 from flask import jsonify
 
 from cam import shoot, get_photos, get_last_photo
@@ -36,7 +36,7 @@ def photos():
 @app.route('/photos/<filename>')
 def photo(filename):
     print('Deliver photo: ', filename)
-    return send_from_directory('photos', filename)
+    return app.send_static_file(filename)
 
 
 @app.route('/photos/last')
