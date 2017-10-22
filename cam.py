@@ -6,7 +6,7 @@ from time import sleep
 try:
     from picamera import PiCamera
 except ImportError:
-    print("picamera not available")
+    print('picamera not available')
     pass
 
 from settings import ROOT_DIRECTORY
@@ -22,7 +22,7 @@ def shoot():
         sleep(2)
         photos_path = ROOT_DIRECTORY + '/photos/' + filename
         camera.capture(photos_path)
-        print("Photo captured: ", photos_path)
+        print('Photo captured: ', photos_path)
 
     return filename
 
