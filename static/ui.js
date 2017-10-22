@@ -43,7 +43,7 @@ class UI {
 
         fetch('/photos')
             .then(response => response.json())
-            .then(json => this.setPhotos(json.filenames));
+            .then(json => this.setPhotos(this, json.filenames));
 
         console.log('Photos fetched!');
     }
