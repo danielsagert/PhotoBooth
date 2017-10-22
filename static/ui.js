@@ -50,7 +50,7 @@ class UI {
     }
 
     getLastFilename() {
-        fetch('/photos/last')
+        return fetch('/photos/last')
             .then(response => response.json())
             .then((json) => {
                 let filename = json.filename;
