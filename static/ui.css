@@ -3,9 +3,6 @@ body {
     overflow: hidden;
 }
 
-#photo-container {
-}
-
 #photo-container img {
     float: left;
     box-sizing: border-box;
