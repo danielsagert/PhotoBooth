@@ -1,7 +1,10 @@
 class UI {
     constructor() {
         this.createContainer();
-        this.fetchPhotos();
+
+        setInterval(function () {
+            this.fetchPhotos();
+        }, 1000);
     }
 
     static setPhotos(container, filenames) {
