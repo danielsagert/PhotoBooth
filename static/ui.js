@@ -15,7 +15,7 @@ class UI {
     createContainer() {
         this.container = document.createElement('div');
         this.container.id = 'photo-container';
-        document.querySelector('body').appendChild(self.container);
+        document.querySelector('body').appendChild(this.container);
     }
 
     fetchPhotos(container) {
