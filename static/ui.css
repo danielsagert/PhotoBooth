@@ -8,10 +8,11 @@ body {
 
 #photo-container img:first-child {
     width: 77%;
+    float: left;
     margin: 5px;
 }
 
-#photo-container img {
+#photo-container img:not(:first-child) {
     width: 10%;
     float: left;
     margin: 5px 8px 7px 5px;
