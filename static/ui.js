@@ -4,7 +4,7 @@ class UI {
 
         let self = this;
         setInterval(() => {
-            self.getLastFilename();
+            self.updateContainer();
         }, 3000);
     }
 
@@ -14,14 +14,26 @@ class UI {
         filenames.forEach(function (filename) {
             let img = document.createElement('img');
             img.setAttribute('src', '/photos/' + filename);
+            img.setAttribute('alt', filename);
             container.appendChild(img);
         });
     }
 
     createContainer() {
-        let container = document.createElement('div');
-        container.id = 'photo-container';
-        document.querySelector('body').appendChild(container);
+        this.container = document.createElement('div');
+        this.container.id = 'photo-container';
+        document.querySelector('body').appendChild(this.container);
+    }
+
+    updateContainer() {
+        let remoteFilename = this.getLastFilename();
+        let localFilename = this.container.firstChild.alt;
+
+        if (localFilename === remoteFilename) {
+            console.log('Not new file available');
+        } else {
+            console.log('New file available');
+        }
     }
 
     getLastFilename() {
