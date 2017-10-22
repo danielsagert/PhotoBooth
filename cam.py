@@ -35,7 +35,7 @@ def get_filename():
 def get_photos():
     files = glob.glob(ROOT_DIRECTORY + '/photos/*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
-    files = files[:MAX_PHOTOS]
+    del files[MAX_PHOTOS:]
     filenames = [os.path.basename(f) for f in files]
     return filenames
 
