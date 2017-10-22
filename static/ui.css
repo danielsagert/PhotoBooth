@@ -6,12 +6,13 @@ body {
 #photo-container {
 }
 
+#photo-container img:first-child {
+    width: 78%;
+    margin: 5px;
+}
+
 #photo-container img {
     width: 10%;
     float: left;
-    margin: 0 5px 5px 0;
-}
-
-#photo-container img:first-child {
-    width: 78%;
+    margin: 5px 8px 7px 5px;
 }
