@@ -8,7 +8,7 @@ class UI {
     setPhotos(self, filenames) {
         filenames.forEach(function (filename) {
             let img = document.createElement('img');
-            img.setAttribute('src', '/photos/' + filename);
+            img.setAttribute('src', '/static/photos/' + filename);
             img.setAttribute('alt', filename);
             self.container.appendChild(img);
         });

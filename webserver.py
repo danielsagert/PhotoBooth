@@ -33,12 +33,6 @@ def photos():
     return jsonify(filenames=filenames)
 
 
-@app.route('/photos/<filename>')
-def photo(filename):
-    print('Deliver photo: ', filename)
-    return app.send_static_file(filename)
-
-
 @app.route('/photos/last')
 def new_photo():
     filename = get_last_photo()
