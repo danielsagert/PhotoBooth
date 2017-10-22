@@ -29,7 +29,7 @@ class UI {
             .then(response => response.json())
             .then((json) => {
                 let filename = json.filename;
-                console.log('Latest filename: ');
+                console.log('Latest filename: ' + filename);
                 return filename;
             });
     }
