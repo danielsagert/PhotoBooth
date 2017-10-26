@@ -23,7 +23,7 @@ sudo apt-get install python-picamera
 
 ### Python Modules
 ```
-sudo pip install flask, picamera, cherrypy
+sudo pip install flask, picamera, gunicorn
 ```
 
 ### Install PiFace Digital Modules ###
@@ -66,5 +66,5 @@ sudo crontab -e
 ```
 Add lines for server start-up after boot.
 ```
-@reboot sudo python /home/pi/PhotoBooth/webserver.py
+@reboot cd /home/pi/PhotoBooth/ && sudo gunicorn --bind 0.0.0.0:8000 webserver:app
 ```

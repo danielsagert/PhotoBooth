@@ -1,9 +1,7 @@
-import cherrypy
 from flask import Flask
 from flask import jsonify
 
 from cam import shoot, get_photos, get_last_photo
-from settings import PORT
 
 app = Flask(__name__)
 
@@ -39,22 +37,5 @@ def new_photo():
     return jsonify(filename=filename)
 
 
-def run_server():
-    # Mount the WSGI callable object (app) on the root directory
-    cherrypy.tree.graft(app, '/')
-
-    # Set the configuration of the web server
-    cherrypy.config.update({
-        'engine.autoreload_on': True,
-        'log.screen': True,
-        'server.socket_port': PORT,
-        'server.socket_host': '0.0.0.0'
-    })
-
-    # Start the CherryPy WSGI web server
-    cherrypy.engine.start()
-    cherrypy.engine.block()
-
-
 if __name__ == "__main__":
-    run_server()
+    app.run()
