@@ -60,7 +60,14 @@ sudo smbpasswd -a pi
 sudo /etc/init.d/samba restart
 ```
 
-### Crontab
+### Start with gunicorn
+#### Manual
+```
+cd /home/pi/PhotoBooth/
+sudo gunicorn --bind 0.0.0.0:8000 webserver:app
+```
+
+#### Crontab
 ```
 sudo crontab -e
 ```
