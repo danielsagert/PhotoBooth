@@ -25,7 +25,7 @@ function loadPhotos(container, lastPhoto) {
         .then(response => response.json())
         .then((json) => {
             for (const filename of json.filenames) {
-                let img = document.createElement('img');
+                let img = new Image();
                 img.setAttribute('src', 'http://localhost:80/photos/' + filename);
                 img.setAttribute('alt', filename);
 
