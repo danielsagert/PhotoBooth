@@ -59,6 +59,7 @@ def get_photos(last_photo):
 
 
 def get_last_photo():
-    filenames = get_photos()
-    if len(filenames) > 0: return filenames[0]
+    filenames = get_photos(None)
+    if len(filenames) > 0:
+        return filenames[0]
     return ''
