@@ -54,7 +54,7 @@ def get_photos(last_photo):
 
         filenames.append(filename)
 
-    print('Found ', len(filenames), ' photos: ', filenames)
+    print('Found ', len(filenames), ' new photo(s): ', filenames)
     return filenames
 
 
