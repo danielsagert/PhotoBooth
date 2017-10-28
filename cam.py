@@ -13,17 +13,20 @@ from settings import PHOTO_DIRECTORY
 
 
 def shoot():
+    if not os.path.exists(PHOTO_DIRECTORY):
+        os.makedirs(PHOTO_DIRECTORY)
+
     filename = get_filename()
+    photo_path = PHOTO_DIRECTORY + filename
 
     with PiCamera() as camera:
         camera.resolution = (1280, 1024)
         camera.start_preview()
         # Camera warm-up time
         sleep(2)
-        photos_path = PHOTO_DIRECTORY + filename
-        camera.capture(photos_path)
+        camera.capture(photo_path)
         camera.stop_preview()
-        print('Photo captured: ', photos_path)
+        print('Photo captured: ', photo_path)
 
     return filename
 
