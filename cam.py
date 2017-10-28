@@ -59,7 +59,12 @@ def get_photos(last_photo):
 
 
 def get_last_photo():
-    filenames = get_photos(None)
-    if len(filenames) > 0:
-        return filenames[0]
-    return ''
+    files = glob.glob(ROOT_DIRECTORY + '/static/photos/*.jpg')
+
+    if len(files) < 1:
+        return ''
+
+    files.sort(key=os.path.getmtime, reverse=True)
+    latest_file = files[0]
+    filename = os.path.basename(latest_file)
+    return filename
