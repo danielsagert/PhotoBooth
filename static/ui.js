@@ -3,7 +3,7 @@ function update() {
 
     if (!container.hasChildNodes()) {
         console.log("Container is empty");
-        this.fetchPhotos(container);
+        fetchPhotos(container);
         return;
     }
 
@@ -19,7 +19,7 @@ function update() {
             }
 
             console.log('New file available: ' + remoteFilename);
-            this.fetchPhotos(container);
+            fetchPhotos(container);
         });
 }
 
@@ -28,7 +28,7 @@ function fetchPhotos(container) {
 
     fetch('/photos')
         .then(response => response.json())
-        .then(json => this.setPhotos(container, json.filenames));
+        .then(json => setPhotos(container, json.filenames));
 }
 
 function setPhotos(container, filenames) {
