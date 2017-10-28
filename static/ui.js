@@ -1,9 +1,5 @@
-function getContainer() {
-    return document.getElementById('photo-container');
-}
-
 function update() {
-    let container = getContainer();
+    let container = document.getElementById('photo-container');
 
     if (!container.hasChildNodes()) {
         console.log("Container is empty");
