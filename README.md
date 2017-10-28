@@ -85,5 +85,6 @@ sudo crontab -e
 
 Add lines for server start-up after boot.
 ```
-@reboot /home/pi/PhotoBooth/start-server.sh && /home/pi/PhotoBooth/start-ui.sh
+@reboot /home/pi/PhotoBooth/start-server.sh
+@reboot /home/pi/PhotoBooth/start-ui.sh
 ```
