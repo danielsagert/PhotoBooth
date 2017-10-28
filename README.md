@@ -70,12 +70,13 @@ sudo /etc/init.d/samba restart
 sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
 ```
 
-Disable screensaver and do not turn off display 
+Disable screensaver, do not turn off display and start browser 
 ```
 # @xscreensaver -no-splash
 @xset s off
 @xset s noblank
 @xset -dpms
+@sh /home/pi/PhotoBooth/start-ui.sh
 ```
 
 #### Crontab
@@ -86,5 +87,4 @@ sudo crontab -e
 Add lines for server start-up after boot.
 ```
 @reboot /home/pi/PhotoBooth/start-server.sh
-@reboot /home/pi/PhotoBooth/start-ui.sh
 ```
