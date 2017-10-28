@@ -32,6 +32,9 @@ sudo apt-get install python3-pifacedigitalio
 sudo apt-get install python3-pifacedigital-emulator
 ```
 
+### Install Apache
+Follow [this documentation](https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md).
+
 ### Install and setup samba
 ```
 sudo apt-get install samba samba-common-bin
