@@ -47,7 +47,6 @@ function setPhotos(container, filenames) {
 }
 
 window.onload = function () {
-    setInterval(function () {
-        update()
-    }, 3000);
+    update();
+    setInterval(update, 3000);
 };
