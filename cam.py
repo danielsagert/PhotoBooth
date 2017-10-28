@@ -49,7 +49,7 @@ def get_photos(last_photo):
     for f in files:
         filename = os.path.basename(f)
 
-        if last_photo is not None and filenames == last_photo:
+        if filename == last_photo:
             break
 
         filenames.append(filename)
