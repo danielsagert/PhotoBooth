@@ -3,10 +3,32 @@ function update() {
 
     if (!container.hasChildNodes()) {
         console.log("Container is empty");
-        fetchPhotos(container);
+        loadAllPhotos(container);
         return;
     }
 
+    loadNewPhotos(container);
+}
+
+function loadAllPhotos(container) {
+    console.log('Load all photos');
+    container.innerHTML = '';
+
+    fetch('/photos')
+        .then(response => response.json())
+        .then((json) => {
+            for (const filename of json.filenames) {
+                let img = document.createElement('img');
+                img.setAttribute('src', '/static/photos/' + filename);
+                img.setAttribute('alt', filename);
+                container.appendChild(img);
+            }
+
+            console.log('All photos loaded');
+        });
+}
+
+function loadNewPhotos(container) {
     fetch('/photos/last')
         .then(response => response.json())
         .then((json) => {
@@ -19,27 +41,8 @@ function update() {
             }
 
             console.log('New file available: ' + remoteFilename);
-            fetchPhotos(container);
+            loadAllPhotos(container);
         });
-}
-
-function fetchPhotos(container) {
-    container.innerHTML = '';
-
-    fetch('/photos')
-        .then(response => response.json())
-        .then(json => setPhotos(container, json.filenames));
-}
-
-function setPhotos(container, filenames) {
-    filenames.forEach(function (filename) {
-        let img = document.createElement('img');
-        img.setAttribute('src', '/static/photos/' + filename);
-        img.setAttribute('alt', filename);
-        container.appendChild(img);
-    });
-
-    console.log('Photos loaded');
 }
 
 window.onload = function () {
