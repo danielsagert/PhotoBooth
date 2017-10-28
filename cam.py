@@ -59,6 +59,7 @@ def get_photos(last_photo):
 
 
 def get_last_photo():
+    print('Get last photo')
     files = glob.glob(ROOT_DIRECTORY + '/static/photos/*.jpg')
 
     if len(files) < 1:
