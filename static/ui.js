@@ -1,18 +1,5 @@
-function createContainer() {
-    let container = document.createElement('div');
-    container.id = 'photo-container';
-    document.querySelector('body').appendChild(container);
-    return container;
-}
-
 function getContainer() {
-    let container = document.getElementById('photo-container');
-
-    if (container) {
-        return container;
-    }
-
-    return createContainer();
+    return document.getElementById('photo-container');
 }
 
 function update() {
