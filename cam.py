@@ -17,10 +17,12 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (1280, 1024)
+        camera.start_preview()
         # Camera warm-up time
         sleep(2)
         photos_path = ROOT_DIRECTORY + '/static/photos/' + filename
         camera.capture(photos_path)
+        camera.stop_preview()
         print('Photo captured: ', photos_path)
 
     return filename
