@@ -64,7 +64,7 @@ sudo /etc/init.d/samba restart
 #### Manual
 ```
 cd /home/pi/PhotoBooth/
-sudo gunicorn --bind 0.0.0.0:8000 webserver:app
+sudo gunicorn --bind 0.0.0.0:8000 --workers 5 webserver:app
 ```
 
 #### Crontab
@@ -73,5 +73,5 @@ sudo crontab -e
 ```
 Add lines for server start-up after boot.
 ```
-@reboot cd /home/pi/PhotoBooth/ && sudo gunicorn --bind 0.0.0.0:8000 webserver:app
+@reboot cd /home/pi/PhotoBooth/ && sudo gunicorn --bind 0.0.0.0:8000 --workers 5 webserver:app
 ```
