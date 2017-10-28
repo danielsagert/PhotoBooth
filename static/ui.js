@@ -20,7 +20,7 @@ function update() {
 
     if (!container.hasChildNodes()) {
         console.log("Container is empty");
-        this.fetchPhotos();
+        this.fetchPhotos(container);
         return;
     }
 
