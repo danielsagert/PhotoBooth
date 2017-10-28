@@ -26,14 +26,17 @@ function loadPhotos(container, lastPhoto) {
         .then((json) => {
             for (const filename of json.filenames) {
                 let img = new Image();
+
+                img.onload = function () {
+                    if (lastPhoto) {
+                        container.insertBefore(img, container.firstChild);
+                    } else {
+                        container.appendChild(img);
+                    }
+                };
+
                 img.setAttribute('src', 'http://localhost:80/photos/' + filename);
                 img.setAttribute('alt', filename);
-
-                if (lastPhoto) {
-                    container.insertBefore(img, container.firstChild);
-                } else {
-                    container.appendChild(img);
-                }
             }
 
             console.log('All photos loaded');
