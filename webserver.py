@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify, request
 
 from cam import shoot, get_photos, get_last_photo
 
@@ -26,8 +25,8 @@ def capture():
 
 @app.route('/photos')
 def photos():
-    print('Deliver filenames all photos')
-    filenames = get_photos()
+    last_photo = request.args.get('lastphoto')
+    filenames = get_photos(last_photo)
     return jsonify(filenames=filenames)
 
 

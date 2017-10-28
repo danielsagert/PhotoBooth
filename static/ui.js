@@ -3,25 +3,37 @@ function update() {
 
     if (!container.hasChildNodes()) {
         console.log("Container is empty");
-        loadAllPhotos(container);
+        loadPhotos(container);
         return;
     }
 
     loadNewPhotos(container);
 }
 
-function loadAllPhotos(container) {
-    console.log('Load all photos');
-    container.innerHTML = '';
+function loadPhotos(container, lastPhoto) {
+    let url;
+    if (!lastPhoto) {
+        console.log('Load all photos');
+        container.innerHTML = '';
+        url = 'photos';
+    } else {
+        console.log('Load all photos until ' + lastPhoto);
+        url = '/photos?lastphoto=' + lastPhoto;
+    }
 
-    fetch('/photos')
+    fetch(url)
         .then(response => response.json())
         .then((json) => {
             for (const filename of json.filenames) {
                 let img = document.createElement('img');
                 img.setAttribute('src', '/static/photos/' + filename);
                 img.setAttribute('alt', filename);
-                container.appendChild(img);
+
+                if (lastPhoto) {
+                    container.insertBefore(img, container.firstChild);
+                } else {
+                    container.appendChild(img);
+                }
             }
 
             console.log('All photos loaded');
@@ -40,8 +52,7 @@ function loadNewPhotos(container) {
                 return;
             }
 
-            console.log('New file available: ' + remoteFilename);
-            loadAllPhotos(container);
+            loadPhotos(container, localFilename);
         });
 }
 
