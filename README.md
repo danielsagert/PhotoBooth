@@ -5,6 +5,8 @@
 ```
 cd /home/pi
 sudo git clone https://github.com/danielsagert/PhotoBooth.git
+sudo chmod +x start-server.sh
+sudo chmod +x start-ui.sh
 ```
 
 ### Raspi Config
@@ -63,18 +65,25 @@ sudo smbpasswd -a pi
 sudo /etc/init.d/samba restart
 ```
 
-### Start with gunicorn
-#### Manual
+#### Configure kiosk mode
 ```
-cd /home/pi/PhotoBooth/
-sudo gunicorn --bind 0.0.0.0:8000 --workers 5 webserver:app
+sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
+```
+
+Disable screensaver and do not turn off display 
+```
+# @xscreensaver -no-splash
+@xset s off
+@xset s noblank
+@xset -dpms
 ```
 
 #### Crontab
 ```
 sudo crontab -e
 ```
+
 Add lines for server start-up after boot.
 ```
-@reboot cd /home/pi/PhotoBooth/ && sudo gunicorn --bind 0.0.0.0:8000 --workers 5 webserver:app
+@reboot /home/pi/PhotoBooth/start-server.sh
 ```
