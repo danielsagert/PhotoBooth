@@ -18,7 +18,7 @@ function loadPhotos(container, lastPhoto) {
         url = 'photos';
     } else {
         console.log('Load all photos until ' + lastPhoto);
-        url = '/photos?lastphoto=' + lastPhoto;
+        url = 'http://localhost:8000/photos?lastphoto=' + lastPhoto;
     }
 
     fetch(url)
@@ -26,7 +26,7 @@ function loadPhotos(container, lastPhoto) {
         .then((json) => {
             for (const filename of json.filenames) {
                 let img = document.createElement('img');
-                img.setAttribute('src', '/static/photos/' + filename);
+                img.setAttribute('src', 'http://localhost:80/photos/' + filename);
                 img.setAttribute('alt', filename);
 
                 if (lastPhoto) {
@@ -41,7 +41,7 @@ function loadPhotos(container, lastPhoto) {
 }
 
 function loadNewPhotos(container) {
-    fetch('/photos/last')
+    fetch('http://localhost:8000/photos/last')
         .then(response => response.json())
         .then((json) => {
             let remoteFilename = json.filename;

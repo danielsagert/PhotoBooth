@@ -9,7 +9,7 @@ except ImportError:
     print('picamera not available')
     pass
 
-from settings import ROOT_DIRECTORY
+from settings import PHOTO_DIRECTORY
 
 
 def shoot():
@@ -20,7 +20,7 @@ def shoot():
         camera.start_preview()
         # Camera warm-up time
         sleep(2)
-        photos_path = ROOT_DIRECTORY + '/static/photos/' + filename
+        photos_path = PHOTO_DIRECTORY + filename
         camera.capture(photos_path)
         camera.stop_preview()
         print('Photo captured: ', photos_path)
@@ -40,7 +40,7 @@ def get_photos(last_photo):
         print ('Get all photos until: ', last_photo)
 
     # Get all JPGs from the photo directory and sort them by timestamp descending
-    files = glob.glob(ROOT_DIRECTORY + '/static/photos/*.jpg')
+    files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
 
     # Keep only the last 15 photos
@@ -62,7 +62,7 @@ def get_photos(last_photo):
 
 def get_last_photo():
     print('Get last photo')
-    files = glob.glob(ROOT_DIRECTORY + '/static/photos/*.jpg')
+    files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
 
     if len(files) < 1:
         return ''

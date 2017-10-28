@@ -1,3 +1,1 @@
-import os
-
-ROOT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
+PHOTO_DIRECTORY = '/var/www/html/photos/'
