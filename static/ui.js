@@ -6,7 +6,7 @@ function createContainer() {
 }
 
 function getContainer() {
-    let container = document.document.getElementById('photo-container');
+    let container = document.getElementById('photo-container');
 
     if (container) {
         return container;
