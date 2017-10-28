@@ -59,6 +59,8 @@ function setPhotos(container, filenames) {
     console.log('Photos loaded');
 }
 
-setInterval(function () {
-    update()
-}, 3000);
+window.onload = function () {
+    setInterval(function () {
+        update()
+    }, 3000);
+};
