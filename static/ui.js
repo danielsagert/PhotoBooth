@@ -37,14 +37,14 @@ function loadPhotos(container, lastPhoto) {
                     } else {
                         container.appendChild(img);
                     }
+
+                    while (container.children.length > 15) {
+                        container.removeChild(container.lastElementChild);
+                    }
                 };
 
                 img.setAttribute('src', urlApache + '/photos/' + filename);
                 img.setAttribute('alt', filename);
-
-                while (container.children.length > 15) {
-                    container.removeChild(container.lastElementChild);
-                }
             }
 
             console.log('All photos loaded');
