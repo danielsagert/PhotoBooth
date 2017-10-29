@@ -42,7 +42,7 @@ function loadPhotos(container, lastPhoto) {
                 img.setAttribute('src', urlApache + '/photos/' + filename);
                 img.setAttribute('alt', filename);
 
-                while (container.getElementsByName('img').length > 15) {
+                while (container.getElementsByTagName('img').length > 15) {
                     container.removeChild(container.lastChild);
                 }
             }
