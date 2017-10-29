@@ -1,3 +1,7 @@
+const hostname = window.location.hostname;
+const urlFlask = 'http://' + hostname + ':8000';
+const urlApache = 'http://' + hostname + ':80';
+
 function update() {
     let container = document.getElementById('photo-container');
 
@@ -18,7 +22,7 @@ function loadPhotos(container, lastPhoto) {
         url = 'photos';
     } else {
         console.log('Load all photos until ' + lastPhoto);
-        url = 'http://localhost:8000/photos?lastphoto=' + lastPhoto;
+        url = urlFlask + '/photos?lastphoto=' + lastPhoto;
     }
 
     fetch(url)
@@ -35,7 +39,7 @@ function loadPhotos(container, lastPhoto) {
                     }
                 };
 
-                img.setAttribute('src', 'http://localhost:80/photos/' + filename);
+                img.setAttribute('src', urlApache + '/photos/' + filename);
                 img.setAttribute('alt', filename);
             }
 
@@ -44,7 +48,7 @@ function loadPhotos(container, lastPhoto) {
 }
 
 function loadNewPhotos(container) {
-    fetch('http://localhost:8000/photos/last')
+    fetch(urlFlask + '/photos/last')
         .then(response => response.json())
         .then((json) => {
             let remoteFilename = json.filename;
