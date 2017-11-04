@@ -9,8 +9,7 @@ except ImportError:
     print('picamera not available')
     pass
 
-from settings import PHOTO_DIRECTORY
-
+PHOTO_DIRECTORY = '/var/www/html/photos/'
 
 def shoot():
     if not os.path.exists(PHOTO_DIRECTORY):
