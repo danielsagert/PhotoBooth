@@ -1,5 +1,3 @@
-import sys
-
 import pifacedigitalio as pfio
 
 
@@ -10,7 +8,6 @@ def button1(event):
 def button2(event):
     print('Button 2 pressed - shutting down...')
     listener.deactivate()
-    sys.exit(0)
 
 
 piface = pfio.PiFaceDigital()
