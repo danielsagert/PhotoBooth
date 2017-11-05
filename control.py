@@ -1,9 +1,9 @@
-import multiprocessing
 import sys
+import threading
 
 import pifacedigitalio as pfio
 
-exit_barrier = multiprocessing.Barrier(2)
+exit_barrier = threading.Barrier(2)
 
 
 def button1(event):
