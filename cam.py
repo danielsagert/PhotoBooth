@@ -3,6 +3,8 @@ import os
 from datetime import datetime
 from time import sleep
 
+import led
+
 try:
     from picamera import PiCamera
 except ImportError:
@@ -21,6 +23,7 @@ def shoot():
         return
 
     ready = False
+    led.set_mode('fast')
 
     if not os.path.exists(PHOTO_DIRECTORY):
         os.makedirs(PHOTO_DIRECTORY)
@@ -33,10 +36,12 @@ def shoot():
         camera.start_preview()
         # Camera warm-up time
         sleep(2)
+        led.set_mode('fast')
         camera.capture(photo_path)
         camera.stop_preview()
 
     print('Photo captured: ', photo_path)
+    led.off()
     ready = True
     return filename
 
