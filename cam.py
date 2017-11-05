@@ -10,8 +10,18 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
+ready = True
+
 
 def shoot():
+    global ready
+
+    if not ready:
+        print('Camera is not ready yet')
+        return
+
+    ready = False
+
     if not os.path.exists(PHOTO_DIRECTORY):
         os.makedirs(PHOTO_DIRECTORY)
 
@@ -25,8 +35,9 @@ def shoot():
         sleep(2)
         camera.capture(photo_path)
         camera.stop_preview()
-        print('Photo captured: ', photo_path)
 
+    print('Photo captured: ', photo_path)
+    ready = True
     return filename
 
 
