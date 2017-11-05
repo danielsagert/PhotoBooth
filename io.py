@@ -7,7 +7,7 @@ def button1(event):
     print('Button 1 pressed - capture photo...')
 
 
-def button2():
+def button2(event):
     print('Button 2 pressed - shutting down...')
     listener.deactivate()
     sys.exit(0)
