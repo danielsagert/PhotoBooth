@@ -46,35 +46,35 @@ def get_filename():
     return 'photo_' + date_and_time + '.jpg'
 
 
-def get_photos(last_photo):
-    if last_photo is None:
-        print('Get all photos')
+def get_filenames(last_filename):
+    if last_filename is None:
+        print('Get all filenames')
     else:
-        print ('Get all photos until: ', last_photo)
+        print ('Get all filenames until: ', last_filename)
 
     # Get all JPGs from the photo directory and sort them by timestamp descending
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
 
-    # Keep only the last 15 photos
+    # Keep only the last 15 files
     del files[15:]
 
-    # Get all filenames until all new photos are collected
+    # Get all filenames until all new files are collected
     filenames = []
     for f in files:
         filename = os.path.basename(f)
 
-        if filename == last_photo:
+        if filename == last_filename:
             break
 
         filenames.append(filename)
 
-    print('Found ', len(filenames), ' new photo(s): ', filenames)
+    print('Found ', len(filenames), ' new file(s): ', filenames)
     return filenames
 
 
-def get_last_photo():
-    print('Get last photo')
+def get_last_filename():
+    print('Get last filename')
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
 
     if len(files) < 1:
