@@ -11,7 +11,7 @@ shutdown = False
 
 def button1(event):
     print('Button 1 pressed - capture photo...')
-    thread.start_new_thread(cam.shoot())
+    thread.start_new_thread(cam.shoot(), ())
 
 
 def button2(event):
