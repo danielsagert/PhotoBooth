@@ -24,6 +24,7 @@ def shoot():
 
     ready = False
     led.set_mode('fast')
+    led.on()
 
     if not os.path.exists(PHOTO_DIRECTORY):
         os.makedirs(PHOTO_DIRECTORY)
