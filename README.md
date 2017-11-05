@@ -25,7 +25,7 @@ sudo apt-get install python-picamera
 
 ### Python Modules
 ```
-sudo pip install flask, picamera, gunicorn, pifacedigitalio
+sudo pip install flask, picamera, gunicorn, pifacedigitalio, pifacecommon
 ```
 
 ### Install PiFace Digital Modules ###
