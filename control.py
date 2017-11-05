@@ -1,9 +1,9 @@
 import sys
-import threading
+import time
 
 import pifacedigitalio as pfio
 
-exit_barrier = threading.Barrier(2)
+shutdown = False
 
 
 def button1(event):
@@ -12,8 +12,8 @@ def button1(event):
 
 def button2(event):
     print('Button 2 pressed - shutting down...')
-    global exit_barrier
-    exit_barrier.wait()
+    global shutdown
+    shutdown = True
 
 
 piface = pfio.PiFaceDigital()
@@ -23,6 +23,8 @@ listener.register(1, pfio.IODIR_FALLING_EDGE, button2)
 listener.activate()
 print("Button 1 listener activated")
 
-exit_barrier.wait()  # program will wait here until exit_barrier releases
+while not shutdown:
+    time.sleep(1)
+
 listener.deactivate()
 sys.exit()
