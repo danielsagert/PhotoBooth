@@ -1,8 +1,9 @@
+import multiprocessing
 import sys
 
 import pifacedigitalio as pfio
 
-listener = None
+exit_barrier = multiprocessing.Barrier(2)
 
 
 def button1(event):
@@ -11,9 +12,8 @@ def button1(event):
 
 def button2(event):
     print('Button 2 pressed - shutting down...')
-    global listener
-    listener.deactivate()
-    sys.exit()
+    global exit_barrier
+    exit_barrier.wait()
 
 
 piface = pfio.PiFaceDigital()
@@ -22,3 +22,7 @@ listener.register(0, pfio.IODIR_FALLING_EDGE, button1)
 listener.register(1, pfio.IODIR_FALLING_EDGE, button2)
 listener.activate()
 print("Button 1 listener activated")
+
+exit_barrier.wait()  # program will wait here until exit_barrier releases
+listener.deactivate()
+sys.exit()
