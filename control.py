@@ -3,11 +3,14 @@ import time
 
 import pifacedigitalio as pfio
 
+import cam
+
 shutdown = False
 
 
 def button1(event):
     print('Button 1 pressed - capture photo...')
+    cam.shoot()
 
 
 def button2(event):
