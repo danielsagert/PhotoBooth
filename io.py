@@ -1,4 +1,4 @@
-import pifacedigitalio as pfio
+import pifacedigitalio
 
 
 def button1(event):
@@ -10,9 +10,9 @@ def button2(event):
     listener.deactivate()
 
 
-piface = pfio.PiFaceDigital()
-listener = pfio.InputEventListener(chip=piface)
-listener.register(0, pfio.IODIR_FALLING_EDGE, button1)
-listener.register(1, pfio.IODIR_FALLING_EDGE, button2)
+piface = pifacedigitalio.PiFaceDigital()
+listener = pifacedigitalio.InputEventListener(chip=piface)
+listener.register(0, pifacedigitalio.IODIR_FALLING_EDGE, button1)
+listener.register(1, pifacedigitalio.IODIR_FALLING_EDGE, button2)
 listener.activate()
 print("Button 1 listener activated")
