@@ -1,4 +1,5 @@
 import sys
+import thread
 import time
 
 import pifacedigitalio as pfio
@@ -10,7 +11,7 @@ shutdown = False
 
 def button1(event):
     print('Button 1 pressed - capture photo...')
-    cam.shoot()
+    thread.start_new_thread(cam.shoot())
 
 
 def button2(event):
