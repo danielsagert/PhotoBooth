@@ -11,7 +11,7 @@ def button1(event):
 
 
 def button2(event):
-    print('Button 2 pressed - shutting down...')
+    print('Button 2 pressed - trigger shutdown...')
     global shutdown
     shutdown = True
 
@@ -27,4 +27,5 @@ while not shutdown:
     time.sleep(1)
 
 listener.deactivate()
+print('Control interface shut down')
 sys.exit()
