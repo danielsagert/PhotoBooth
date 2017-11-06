@@ -15,11 +15,13 @@ def on(mode):
     global _stop
     global _mode
 
+    if _thread is None:
+        _thread = Thread(target=loop, args=())
+
     _mode = mode
 
     if not _thread.is_alive():
         _stop = False
-        _thread = Thread(target=loop, args=())
         _thread.start()
 
 
