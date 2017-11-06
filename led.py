@@ -1,31 +1,29 @@
-import thread
+from threading import Thread
 from time import sleep
 
 import pifacedigitalio as pfio
 
 LED_BUTTON = 0
 piface = pfio.PiFaceDigital()
-_active = False
 _mode = None
 _stop = True
+_thread = None
 
 
 def on(mode):
-    global _active
+    global _thread
     global _stop
     global _mode
 
     _mode = mode
 
-    if not _active:
-        _active = True
+    if not _thread.is_alive:
         _stop = False
-        thread.start_new_thread(loop, ())
+        _thread = Thread(target=loop, args=())
+        _thread.start()
 
 
 def loop():
-    global _active
-
     while not _stop:
         if _mode == 'fast':
             piface.leds[LED_BUTTON].turn_on()
@@ -37,10 +35,9 @@ def loop():
         else:
             break
 
-    _active = False
+    piface.leds[LED_BUTTON].turn_off()
 
 
 def off():
     global _stop
     _stop = True
-    piface.leds[LED_BUTTON].turn_off()
