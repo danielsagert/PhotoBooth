@@ -29,9 +29,9 @@ def loop():
     while not _stop:
         if _mode == 'fast':
             piface.leds[LED_BUTTON].turn_on()
-            sleep(0.5)
+            sleep(0.2)
             piface.leds[LED_BUTTON].turn_off()
-            sleep(0.5)
+            sleep(0.2)
         elif _mode == 'permanent':
             piface.leds[LED_BUTTON].turn_on()
         else:
