@@ -15,11 +15,13 @@ def set_mode(mode):
 
 
 def on():
+    global _stop
+    _stop = False
     thread.start_new_thread(loop, ())
 
 
 def loop():
-    while _stop:
+    while not _stop:
         if _mode == 'fast':
             piface.leds[LED_BUTTON].turn_on()
             sleep(0.5)
