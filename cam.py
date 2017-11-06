@@ -35,14 +35,14 @@ def shoot():
         camera.resolution = (1280, 1024)
         camera.start_preview()
         # Camera warm-up time
-        sleep(3)
-        print('Capture...')
+        sleep(2)
         led.on('permanent')
+        sleep(1)
+        print('Capture...')
         camera.capture(photo_path)
         camera.stop_preview()
 
     print('Photo captured: ', photo_path)
-    sleep(1)
     led.off()
     ready = True
     return filename
