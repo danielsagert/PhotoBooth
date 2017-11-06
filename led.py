@@ -5,22 +5,27 @@ import pifacedigitalio as pfio
 
 LED_BUTTON = 0
 piface = pfio.PiFaceDigital()
+_active = False
 _mode = None
 _stop = True
 
 
-def set_mode(mode):
+def on(mode):
+    global _active
+    global _stop
     global _mode
+
     _mode = mode
 
-
-def on():
-    global _stop
-    _stop = False
-    thread.start_new_thread(loop, ())
+    if not _active:
+        _active = True
+        _stop = False
+        thread.start_new_thread(loop, ())
 
 
 def loop():
+    global _active
+
     while not _stop:
         if _mode == 'fast':
             piface.leds[LED_BUTTON].turn_on()
@@ -32,6 +37,8 @@ def loop():
         else:
             piface.leds[LED_BUTTON].turn_off()
             break
+
+    _active = False
 
 
 def off():
