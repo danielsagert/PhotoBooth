@@ -35,7 +35,6 @@ def loop():
         elif _mode == 'permanent':
             piface.leds[LED_BUTTON].turn_on()
         else:
-            piface.leds[LED_BUTTON].turn_off()
             break
 
     _active = False
@@ -44,3 +43,4 @@ def loop():
 def off():
     global _stop
     _stop = True
+    piface.leds[LED_BUTTON].turn_off()
