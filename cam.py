@@ -81,7 +81,6 @@ def get_filenames(last_filename):
 
 
 def get_last_filename():
-    print('Get last filename')
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
 
     if len(files) < 1:
