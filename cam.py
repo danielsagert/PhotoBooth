@@ -43,6 +43,7 @@ def shoot():
         camera.stop_preview()
 
     print('Photo captured: ', photo_path)
+    sleep(1)
     led.off()
     ready = True
     return filename
