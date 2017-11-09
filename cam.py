@@ -33,13 +33,14 @@ def shoot():
     photo_path = PHOTO_DIRECTORY + filename
 
     with PiCamera() as camera:
-        camera.resolution = (2592, 1944)
-        camera.start_preview(alpha=240)
         display.countdown(3)
+
+        camera.resolution = (2592, 1944)
+        camera.start_preview(alpha=200)
         # Camera warm-up time
-        sleep(2)
-        led.on('permanent')
-        sleep(1)
+        sleep(3)
+        # led.on('permanent')
+        # sleep(1)
         print('Capture...')
         camera.capture(photo_path)
         camera.stop_preview()
