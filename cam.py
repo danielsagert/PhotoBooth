@@ -33,7 +33,7 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (2592, 1944)
-        camera.start_preview(alpha=220)
+        camera.start_preview(alpha=240)
         # Camera warm-up time
         sleep(2)
         led.on('permanent')
