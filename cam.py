@@ -3,7 +3,6 @@ import os
 from datetime import datetime
 from time import sleep
 
-import display
 import led
 
 try:
@@ -35,7 +34,7 @@ def shoot():
     with PiCamera() as camera:
         camera.resolution = (2592, 1944)
         camera.start_preview(alpha=200)
-        display.countdown(3)
+        # display.countdown(3)
         # Camera warm-up time
         sleep(2)
         led.on('permanent')
