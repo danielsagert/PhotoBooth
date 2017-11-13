@@ -56,7 +56,7 @@ def shoot():
         # the new overlay semi-transparent, then move it above
         # the preview
         o.alpha = 128
-        o.layer = 3
+        o.layer = 2
 
         # camera.start_preview(alpha=200)
         # display.countdown(3)
