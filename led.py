@@ -10,6 +10,22 @@ _thread = None
 _event = None
 
 
+def flash():
+    while not _event.isSet():
+        if _mode == 'fast':
+            piface.leds[BUTTON].turn_on()
+            sleep(0.2)
+            piface.leds[BUTTON].turn_off()
+            sleep(0.2)
+        elif _mode == 'permanent':
+            piface.leds[BUTTON].turn_on()
+            sleep(0.2)
+        else:
+            break
+
+    piface.leds[BUTTON].turn_off()
+
+
 def on(mode):
     global _mode
     global _thread
@@ -21,21 +37,6 @@ def on(mode):
         _event = threading.Event()
         _thread = threading.Thread(target=flash)
         _thread.start()
-
-
-def flash():
-    while not _event.isSet():
-        if _mode == 'fast':
-            piface.leds[BUTTON].turn_on()
-            sleep(0.2)
-            piface.leds[BUTTON].turn_off()
-            sleep(0.2)
-        elif _mode == 'permanent':
-            piface.leds[BUTTON].turn_on()
-        else:
-            break
-
-    piface.leds[BUTTON].turn_off()
 
 
 def off():

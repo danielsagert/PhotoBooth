@@ -37,9 +37,9 @@ def shoot():
         camera.start_preview(alpha=200)
         display.countdown(3)
         # Camera warm-up time
-        sleep(3)
-        # led.on('permanent')
-        # sleep(1)
+        sleep(2)
+        led.on('permanent')
+        sleep(1)
         print('Capture...')
         camera.capture(photo_path)
         camera.stop_preview()
