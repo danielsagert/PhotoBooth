@@ -17,7 +17,7 @@ def on(mode):
 
     _mode = mode
 
-    if _thread is None or not _event.isSet():
+    if _thread is None or _event.isSet():
         _event = threading.Event()
         _thread = threading.Thread(name='flash', target=flash, args=(_event))
         _thread.start()
