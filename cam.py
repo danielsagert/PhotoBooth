@@ -35,7 +35,7 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (2592, 1944)
-        camera.start_preview(alpha=200)
+        camera.start_preview()
 
         # Load the arbitrarily sized image
         img = Image.open('static/photos/photobooth-test.jpg')
@@ -55,8 +55,8 @@ def shoot():
         # preview (which defaults to layer 2). Here we make
         # the new overlay semi-transparent, then move it above
         # the preview
-        # o.alpha = 128
-        # o.layer = 3
+        o.alpha = 128
+        o.layer = 3
 
         # camera.start_preview(alpha=200)
         # display.countdown(3)
