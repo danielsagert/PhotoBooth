@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from time import sleep
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 import led
 
@@ -37,26 +37,24 @@ def shoot():
         camera.resolution = (2592, 1944)
         camera.start_preview()
 
-        # Load the arbitrarily sized image
-        img = Image.open('static/photos/photobooth-test.jpg')
-        # Create an image padded to the required size with
-        # mode 'RGB'
-        pad = Image.new('RGB', (
-            ((img.size[0] + 31) // 32) * 32,
-            ((img.size[1] + 15) // 16) * 16,
-        ))
-        # Paste the original image into the padded one
-        pad.paste(img, (0, 0))
-
-        # Add the overlay with the padded image as the source,
-        # but the original image's dimensions
-        camera.add_overlay(pad.tostring(), layer=3, size=img.size, alpha=3)
-        # By default, the overlay is in layer 0, beneath the
-        # preview (which defaults to layer 2). Here we make
-        # the new overlay semi-transparent, then move it above
-        # the preview
+        # img = Image.open('static/photos/photobooth-test.jpg')
+        # pad = Image.new('RGB', (
+        #     ((img.size[0] + 31) // 32) * 32,
+        #     ((img.size[1] + 15) // 16) * 16,
+        # ))
+        # pad.paste(img, (0, 0))
+        # camera.add_overlay(pad.tostring(), layer=3, size=img.size, alpha=3)
         # o.alpha = 128
         # o.layer = 3
+
+        text = '3'
+        img = Image.new("RGB", (1024, 768))
+        draw = ImageDraw.Draw(img)
+        draw.font = ImageFont.truetype(
+            "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+            50)
+        draw.text((10, 10), text, (255, 255, 255))
+        camera.add_overlay(img.tostring(), layer=3, size=img.size, alpha=128)
 
         # camera.start_preview(alpha=200)
         # display.countdown(3)
