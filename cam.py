@@ -41,7 +41,7 @@ def shoot():
         img = Image.open('static/photos/photobooth-test.jpg')
         # Create an image padded to the required size with
         # mode 'RGB'
-        pad = Image.new('RGBA', (
+        pad = Image.new('RGB', (
             ((img.size[0] + 31) // 32) * 32,
             ((img.size[1] + 15) // 16) * 16,
         ))
@@ -50,7 +50,7 @@ def shoot():
 
         # Add the overlay with the padded image as the source,
         # but the original image's dimensions
-        o = camera.add_overlay(pad.tobytes(), size=img.size)
+        o = camera.add_overlay(pad.tostring(), size=img.size)
         # By default, the overlay is in layer 0, beneath the
         # preview (which defaults to layer 2). Here we make
         # the new overlay semi-transparent, then move it above
