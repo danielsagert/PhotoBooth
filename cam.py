@@ -50,13 +50,13 @@ def shoot():
 
         # Add the overlay with the padded image as the source,
         # but the original image's dimensions
-        o = camera.add_overlay(pad.tostring(), size=img.size)
+        camera.add_overlay(pad.tostring(), layer=3, size=img.size, alpha=3)
         # By default, the overlay is in layer 0, beneath the
         # preview (which defaults to layer 2). Here we make
         # the new overlay semi-transparent, then move it above
         # the preview
-        o.alpha = 128
-        o.layer = 3
+        # o.alpha = 128
+        # o.layer = 3
 
         # camera.start_preview(alpha=200)
         # display.countdown(3)
