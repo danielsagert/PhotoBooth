@@ -19,12 +19,12 @@ def on(mode):
 
     if _thread is None or _event.isSet():
         _event = threading.Event()
-        _thread = threading.Thread(name='flash', target=flash, args=(_event))
+        _thread = threading.Thread(target=flash)
         _thread.start()
 
 
-def flash(event):
-    while not event.isSet():
+def flash():
+    while not _event.isSet():
         if _mode == 'fast':
             piface.leds[BUTTON].turn_on()
             sleep(0.2)
