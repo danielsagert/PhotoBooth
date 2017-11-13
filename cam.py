@@ -41,7 +41,7 @@ def shoot():
         img = Image.open('static/photos/photobooth-test.jpg')
         # Create an image padded to the required size with
         # mode 'RGB'
-        pad = Image.new('RGB', (
+        pad = Image.new('RGBA', (
             ((img.size[0] + 31) // 32) * 32,
             ((img.size[1] + 15) // 16) * 16,
         ))
@@ -56,7 +56,7 @@ def shoot():
         # the new overlay semi-transparent, then move it above
         # the preview
         o.alpha = 128
-        o.layer = 2
+        o.layer = 3
 
         # camera.start_preview(alpha=200)
         # display.countdown(3)
