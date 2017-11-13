@@ -1,43 +1,43 @@
-from threading import Thread
+import threading
 from time import sleep
 
 import pifacedigitalio as pfio
 
-LED_BUTTON = 0
+BUTTON = 0
 piface = pfio.PiFaceDigital()
-_mode = None
-_stop = True
+_mode = 'fast'
 _thread = None
+_event = None
 
 
 def on(mode):
-    global _thread
-    global _stop
     global _mode
+    global _thread
+    global _event
 
     _mode = mode
-    _stop = False
 
-    if _thread is None or not _thread.is_alive():
-        _thread = Thread(target=loop, args=())
+    if _thread is None or not _event.isSet():
+        _event = threading.Event()
+        _thread = threading.Thread(name='flash', target=flash, args=(_event))
         _thread.start()
 
 
-def loop():
-    while not _stop:
+def flash(event):
+    while not event.isSet():
         if _mode == 'fast':
-            piface.leds[LED_BUTTON].turn_on()
+            piface.leds[BUTTON].turn_on()
             sleep(0.2)
-            piface.leds[LED_BUTTON].turn_off()
+            piface.leds[BUTTON].turn_off()
             sleep(0.2)
         elif _mode == 'permanent':
-            piface.leds[LED_BUTTON].turn_on()
+            piface.leds[BUTTON].turn_on()
         else:
             break
 
-    piface.leds[LED_BUTTON].turn_off()
+    piface.leds[BUTTON].turn_off()
 
 
 def off():
-    global _stop
-    _stop = True
+    global _event
+    _event.set()
