@@ -47,6 +47,7 @@ def shoot():
         # pad.paste(img, (0, 0))
 
         overlay = get_overlay('3')
+        print overlay.size
         camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128)
 
         # display.countdown(3)
