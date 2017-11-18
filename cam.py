@@ -47,7 +47,7 @@ def shoot():
                 camera.remove_overlay(overlay)
 
             overlay_img = get_overlay(str(i))
-            overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=80,
+            overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=40,
                                          format='rgb')
             sleep(1)
 
