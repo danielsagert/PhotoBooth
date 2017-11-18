@@ -37,6 +37,7 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
+        camera.vflip = True
         camera.start_preview()
 
         overlay = get_overlay('3')
@@ -48,6 +49,7 @@ def shoot():
         led.on('permanent')
         sleep(1)
         print('Capture...')
+        camera.vflip = False
         camera.capture(photo_path)
         camera.stop_preview()
 
@@ -59,7 +61,7 @@ def shoot():
 
 def get_overlay(text):
     font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 500)
-    img = Image.new('RGB', (WIDTH, HEIGHT))
+    img = Image.new('RGB', (500, 500))
     draw = ImageDraw.Draw(img)
     text_x, text_y = draw.textsize(text)
     x = (HEIGHT - text_x) / 2
