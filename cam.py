@@ -41,7 +41,7 @@ def shoot():
         camera.start_preview()
 
         overlay = get_overlay('3')
-        camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
+        # camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
 
         # display.countdown(3)
         # Camera warm-up time
