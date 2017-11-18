@@ -14,8 +14,6 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
-# WIDTH = 1920
-# HEIGHT = 1080
 WIDTH = 1280
 HEIGHT = 1024
 ready = True
@@ -42,14 +40,14 @@ def shoot():
         camera.hflip = True
         camera.start_preview()
 
-        overlay = get_overlay('3')
-        # camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
+        for i in range(3, 2, 1):
+            overlay = get_overlay('3')
+            camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
+            if i == 1:
+                led.on('permanent')
+            sleep(1)
 
         # display.countdown(3)
-        # Camera warm-up time
-        sleep(2)
-        led.on('permanent')
-        sleep(1)
         print('Capture...')
         camera.hflip = False
         camera.capture(photo_path)
