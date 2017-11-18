@@ -62,7 +62,7 @@ def get_overlay(text):
     font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 500)
     img = Image.new('RGB', (WIDTH, HEIGHT))
     draw = ImageDraw.Draw(img)
-    text_x, text_y = draw.getsize(text)
+    text_x, text_y = draw.textsize(text)
     x = (HEIGHT - text_x) / 2
     y = (HEIGHT - text_y) / 2
     draw.text((x, y), text, font=font, fill=(255, 0, 0))
