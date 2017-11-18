@@ -39,6 +39,7 @@ def shoot():
         camera.resolution = (WIDTH, HEIGHT)
         camera.hflip = True
         camera.start_preview()
+        camera.preview.windows = (0, 0, 700, 1000)
 
         overlay = None
 
