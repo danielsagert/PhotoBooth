@@ -56,9 +56,10 @@ def shoot():
         led.on('permanent')
         camera.remove_overlay(overlay)
         overlay_img = get_overlay('Smile!')
-        camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
+        overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
         sleep(1)
 
+        camera.remove_overlay(overlay)
         camera.stop_preview()
         camera.hflip = False
         camera.capture(photo_path)
