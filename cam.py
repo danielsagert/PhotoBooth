@@ -48,7 +48,7 @@ def shoot():
 
         overlay = get_overlay('3')
         print overlay.size
-        camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128)
+        camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
 
         # display.countdown(3)
         # Camera warm-up time
@@ -67,7 +67,7 @@ def shoot():
 
 def get_overlay(text):
     font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 500)
-    img = Image.new("RGB", (RESOLUTION_X, RESOLUTION_Y))
+    img = Image.new('RGB', (RESOLUTION_X, RESOLUTION_Y))
     draw = ImageDraw.Draw(img)
     draw.font = font
     text_x, text_y = font.getsize(text)
