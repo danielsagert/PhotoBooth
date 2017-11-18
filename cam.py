@@ -58,11 +58,10 @@ def shoot():
     camera.capture(photo_path)
     camera.stop_preview()
 
-
-print('Photo captured: ', photo_path)
-led.off()
-ready = True
-return filename
+    print('Photo captured: ', photo_path)
+    led.off()
+    ready = True
+    return filename
 
 
 def get_overlay(text):
