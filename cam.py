@@ -50,8 +50,8 @@ def shoot():
             else:
                 overlay.update(overlay_img.tostring())
 
-            if i == 1:
-                led.on('permanent')
+            # if i == 1:
+            #     led.on('permanent')
 
             sleep(1)
 
