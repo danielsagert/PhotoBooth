@@ -42,9 +42,10 @@ def shoot():
 
         overlay = None
 
-        for i in range(2, 1):
-            overlay_img = get_overlay(str(i))
+        for i in range(3, 2, 1):
+            print('Countdown:', i)
 
+            overlay_img = get_overlay(str(i))
             if not overlay:
                 overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
                                              format='rgb')
