@@ -40,23 +40,29 @@ def shoot():
         camera.hflip = True
         camera.start_preview()
 
-        for i in range(3, 2, 1):
-            overlay = get_overlay('3')
-            camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
+        overlay_img = get_overlay('3')
+        overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
+
+        for i in range(2, 1):
+            overlay_img = get_overlay(str(i))
+            overlay.update(overlay_img.tostring())
+
             if i == 1:
                 led.on('permanent')
-            sleep(1)
 
-        # display.countdown(3)
-        print('Capture...')
-        camera.hflip = False
-        camera.capture(photo_path)
-        camera.stop_preview()
+        sleep(1)
 
-    print('Photo captured: ', photo_path)
-    led.off()
-    ready = True
-    return filename
+    # display.countdown(3)
+    print('Capture...')
+    camera.hflip = False
+    camera.capture(photo_path)
+    camera.stop_preview()
+
+
+print('Photo captured: ', photo_path)
+led.off()
+ready = True
+return filename
 
 
 def get_overlay(text):
