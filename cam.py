@@ -43,8 +43,10 @@ def shoot():
         overlay = None
 
         for i in range(3, 0, -1):
+            if overlay:
+                camera.remove_overlay(overlay)
+
             overlay_img = get_overlay(str(i))
-            camera.remove_overlay(overlay)
             overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
                                          format='rgb')
 
@@ -63,7 +65,11 @@ def shoot():
             sleep(1)
 
         print('Capture...')
+
         camera.remove_overlay(overlay)
+        overlay_img = get_overlay('Smile!')
+        camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
+
         camera.stop_preview()
         camera.hflip = False
         camera.capture(photo_path)
