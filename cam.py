@@ -40,12 +40,16 @@ def shoot():
         camera.hflip = True
         camera.start_preview()
 
-        overlay_img = get_overlay('3')
-        overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
+        overlay = None
 
         for i in range(2, 1):
             overlay_img = get_overlay(str(i))
-            overlay.update(overlay_img.tostring())
+
+            if not overlay:
+                overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
+                                             format='rgb')
+            else:
+                overlay.update(overlay_img.tostring())
 
             if i == 1:
                 led.on('permanent')
