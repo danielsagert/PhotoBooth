@@ -73,6 +73,7 @@ def get_overlay(text):
     text_x, text_y = font.getsize(text)
     x = (RESOLUTION_Y - text_x) / 2
     y = (RESOLUTION_Y - text_y) / 2
+    print (x, y)
     draw.text((x, y), text, (255, 255, 255))
     return img
 
