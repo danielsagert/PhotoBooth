@@ -39,7 +39,6 @@ def shoot():
         camera.resolution = (WIDTH, HEIGHT)
         camera.hflip = True
         camera.start_preview()
-        camera.preview.window = (0, 0, 700, 1000)
 
         overlay = None
 
@@ -48,7 +47,7 @@ def shoot():
                 camera.remove_overlay(overlay)
 
             overlay_img = get_overlay(str(i))
-            overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=230,
+            overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=80,
                                          format='rgb')
             sleep(1)
 
