@@ -86,7 +86,7 @@ def get_overlay(text):
     img = Image.new('RGB', (WIDTH, HEIGHT))
     draw = ImageDraw.Draw(img)
     text_x, text_y = draw.textsize(text, font)
-    x = (HEIGHT - text_x) / 2
+    x = (WIDTH - text_x) / 2
     y = (HEIGHT - text_y) / 2
     draw.text((x, y), text, font=font, fill=(255, 0, 0))
     return img
