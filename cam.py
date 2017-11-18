@@ -14,6 +14,8 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
+RESOLUTION_X = 1920
+RESOLUTION_Y = 1080
 ready = True
 
 
@@ -34,7 +36,7 @@ def shoot():
     photo_path = PHOTO_DIRECTORY + filename
 
     with PiCamera() as camera:
-        camera.resolution = (1920, 1080)
+        camera.resolution = (RESOLUTION_X, RESOLUTION_Y)
         camera.start_preview()
 
         # img = Image.open('static/photos/photobooth-test.jpg')
@@ -63,10 +65,13 @@ def shoot():
 
 
 def get_overlay(text):
-    img = Image.new("RGB", (1024, 768))
+    font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 500)
+    img = Image.new("RGB", (RESOLUTION_X, RESOLUTION_Y))
     draw = ImageDraw.Draw(img)
-    draw.font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 50)
-    draw.text((10, 10), text, (255, 255, 255))
+    text_x, text_y = font.getsize(text)
+    x = (RESOLUTION_Y - text_x) / 2
+    y = (RESOLUTION_Y - text_y) / 2
+    draw.text((x, y), text, font=font)
     return img
 
 
