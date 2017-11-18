@@ -44,14 +44,18 @@ def shoot():
 
         for i in range(3, 0, -1):
             overlay_img = get_overlay(str(i))
-            if not overlay:
-                overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
-                                             format='rgb')
-            else:
-                camera.remove_overlay(overlay)
-                overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
-                                             format='rgb')
-                # overlay.update(overlay_img.tostring())
+            camera.remove_overlay(overlay)
+            overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
+                                         format='rgb')
+
+            # if not overlay:
+            #     overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
+            #                                  format='rgb')
+            # else:
+            #     camera.remove_overlay(overlay)
+            #     overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
+            #                                  format='rgb')
+            # overlay.update(overlay_img.tostring())
 
             # if i == 1:
             #     led.on('permanent')
