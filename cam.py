@@ -14,8 +14,10 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
-WIDTH = 1920
-HEIGHT = 1080
+# WIDTH = 1920
+# HEIGHT = 1080
+WIDTH = 1280
+HEIGHT = 1024
 ready = True
 
 
@@ -38,7 +40,7 @@ def shoot():
     with PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
         camera.hflip = True
-        camera.start_preview(resolution=(1440, 1080))
+        camera.start_preview()
 
         overlay = get_overlay('3')
         # camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
