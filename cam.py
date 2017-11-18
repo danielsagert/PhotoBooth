@@ -38,7 +38,7 @@ def shoot():
     with PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
         camera.hflip = True
-        camera.start_preview()
+        camera.start_preview(resolution=(WIDTH, HEIGHT))
 
         overlay = get_overlay('3')
         # camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128, format='rgb')
