@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from time import sleep
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 import led
 
@@ -35,28 +35,17 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (1920, 1080)
-        # camera.start_preview(alpha=200)
-
-        img = Image.open('static/photos/photobooth-test.jpg')
-        pad = Image.new('RGB', (
-            ((img.size[0] + 31) // 32) * 32,
-            ((img.size[1] + 15) // 16) * 16,
-        ))
-        pad.paste(img, (0, 0))
-        o = camera.add_overlay(pad.tostring(), layer=3, size=img.size, alpha=3)
-        o.alpha = 128
-        o.layer = 3
-
-        # text = '3'
-        # img = Image.new("RGB", (1024, 768))
-        # draw = ImageDraw.Draw(img)
-        # draw.font = ImageFont.truetype(
-        #     "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
-        #     50)
-        # draw.text((10, 10), text, (255, 255, 255))
-        # camera.add_overlay(img.tostring(), layer=3, size=img.size, alpha=128)
-
         camera.start_preview()
+
+        # img = Image.open('static/photos/photobooth-test.jpg')
+        # pad = Image.new('RGB', (
+        #     ((img.size[0] + 31) // 32) * 32,
+        #     ((img.size[1] + 15) // 16) * 16,
+        # ))
+        # pad.paste(img, (0, 0))
+
+        overlay = get_overlay('3')
+        camera.add_overlay(overlay.tostring(), layer=3, size=overlay.size, alpha=128)
 
         # display.countdown(3)
         # Camera warm-up time
@@ -71,6 +60,14 @@ def shoot():
     led.off()
     ready = True
     return filename
+
+
+def get_overlay(text):
+    img = Image.new("RGB", (1024, 768))
+    draw = ImageDraw.Draw(img)
+    draw.font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 50)
+    draw.text((10, 10), text, (255, 255, 255))
+    return img
 
 
 def get_filename():
