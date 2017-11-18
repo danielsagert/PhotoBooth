@@ -34,7 +34,7 @@ def shoot():
     photo_path = PHOTO_DIRECTORY + filename
 
     with PiCamera() as camera:
-        camera.resolution = (2592, 1944)
+        camera.resolution = (1920, 1080)
         # camera.start_preview(alpha=200)
 
         img = Image.open('static/photos/photobooth-test.jpg')
