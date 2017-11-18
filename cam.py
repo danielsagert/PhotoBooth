@@ -37,7 +37,7 @@ def shoot():
 
     with PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
-        camera.vflip = True
+        camera.hflip = True
         camera.start_preview()
 
         overlay = get_overlay('3')
@@ -49,7 +49,7 @@ def shoot():
         led.on('permanent')
         sleep(1)
         print('Capture...')
-        camera.vflip = False
+        camera.hflip = False
         camera.capture(photo_path)
         camera.stop_preview()
 
