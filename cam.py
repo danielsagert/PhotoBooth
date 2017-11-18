@@ -66,14 +66,13 @@ def shoot():
 
 
 def get_overlay(text):
-    font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 500)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 500)
     img = Image.new('RGB', (RESOLUTION_X, RESOLUTION_Y))
     draw = ImageDraw.Draw(img)
     text_x, text_y = font.getsize(text)
     x = (RESOLUTION_Y - text_x) / 2
     y = (RESOLUTION_Y - text_y) / 2
-    print (x, y)
-    draw.text((x, y), text, font=font)
+    draw.text((x, y), text, font=font, fill=(255, 0, 0))
     return img
 
 
