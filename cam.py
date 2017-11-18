@@ -54,13 +54,12 @@ def shoot():
             if i == 1:
                 led.on('permanent')
 
-        sleep(1)
+            sleep(1)
 
-    # display.countdown(3)
-    print('Capture...')
-    camera.hflip = False
-    camera.capture(photo_path)
-    camera.stop_preview()
+        print('Capture...')
+        camera.hflip = False
+        camera.capture(photo_path)
+        camera.stop_preview()
 
     print('Photo captured: ', photo_path)
     led.off()
