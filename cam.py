@@ -48,7 +48,10 @@ def shoot():
                 overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
                                              format='rgb')
             else:
-                overlay.update(overlay_img.tostring())
+                camera.remove_overlay(overlay)
+                overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128,
+                                             format='rgb')
+                # overlay.update(overlay_img.tostring())
 
             # if i == 1:
             #     led.on('permanent')
@@ -56,6 +59,7 @@ def shoot():
             sleep(1)
 
         print('Capture...')
+        camera.remove_overlay(overlay)
         camera.stop_preview()
         camera.hflip = False
         camera.capture(photo_path)
