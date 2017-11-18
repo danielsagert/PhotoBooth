@@ -50,15 +50,15 @@ def shoot():
             else:
                 overlay.update(overlay_img.tostring())
 
-            # if i == 1:
-            #     led.on('permanent')
+            if i == 1:
+                led.on('permanent')
 
             sleep(1)
 
         print('Capture...')
+        camera.stop_preview()
         camera.hflip = False
         camera.capture(photo_path)
-        camera.stop_preview()
 
     print('Photo captured: ', photo_path)
     led.off()
