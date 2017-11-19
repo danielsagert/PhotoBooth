@@ -14,8 +14,8 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
-WIDTH = 1280
-HEIGHT = 1024
+WIDTH = 2592
+HEIGHT = 1944
 ready = True
 
 
