@@ -17,10 +17,6 @@ function loadPhotos() {
                     lastFilenames.splice(0, 0, filename);
                     lastFilenames.splice(6);
                     console.log('Last filenames: ' + lastFilenames);
-                }
-
-                container.innerText = '';
-                for (const filename of lastFilenames) {
                     addImage(container, filename);
                 }
             }
