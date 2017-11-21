@@ -69,5 +69,5 @@ function loadNewPhotos(container) {
 
 window.onload = function () {
     update();
-    setInterval(update, 3000);
+    setInterval(update, 1000);
 };
