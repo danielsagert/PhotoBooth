@@ -1,6 +1,7 @@
 const hostname = window.location.hostname;
 const urlFlask = 'http://' + hostname + ':8000';
 const urlApache = 'http://' + hostname + ':80';
+var last_filenames = [];
 
 function update() {
     let container = document.getElementById('photo-container');
@@ -29,6 +30,10 @@ function loadPhotos(container, lastPhoto) {
         .then(response => response.json())
         .then((json) => {
             for (const filename of json.filenames) {
+                last_filenames.splice(0, 0, filename);
+                last_filenames.splice(6);
+                console.log('last filenames: ' + last_filenames);
+
                 let img = new Image();
 
                 img.onload = function () {
