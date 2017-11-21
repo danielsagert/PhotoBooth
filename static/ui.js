@@ -38,7 +38,7 @@ function loadPhotos(container, lastPhoto) {
                         container.appendChild(img);
                     }
 
-                    while (container.children.length > 15) {
+                    while (container.children.length > 6) {
                         container.removeChild(container.lastElementChild);
                     }
                 };

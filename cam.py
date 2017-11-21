@@ -14,7 +14,7 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/var/www/html/photos/'
-MAX_FILES = 15
+MAX_FILES = 6
 PHOTO_WIDTH = 2592
 PHOTO_HEIGHT = 1944
 PREVIEW_WIDTH = 1280
@@ -100,7 +100,7 @@ def get_filenames(last_filename):
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
 
-    # Keep only the last 15 files
+    # Keep only the last x files
     del files[MAX_FILES:]
 
     # Get all filenames until all new files are collected
