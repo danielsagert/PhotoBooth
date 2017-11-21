@@ -16,11 +16,7 @@ function loadPhotos() {
                 if (!lastFilenames.includes(filename)) {
                     lastFilenames.splice(0, 0, filename);
                     lastFilenames.splice(6);
-
-                    let img = document.querySelector("img[alt='" + filename + "']");
-                    if (!img) {
-                        addImage(container, filename);
-                    }
+                    addImage(container, filename);
                 }
             }
         });
