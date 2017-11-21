@@ -16,6 +16,8 @@ function loadPhotos() {
                 if (!lastFilenames.includes(filename)) {
                     lastFilenames.splice(0, 0, filename);
                     lastFilenames.splice(6);
+                    console.log('Last filenames: ' + lastFilenames);
+
                     addImage(container, filename);
                 }
             }
@@ -23,6 +25,8 @@ function loadPhotos() {
 }
 
 function addImage(container, filename) {
+    console.log('Add new image to container:' + filename);
+
     let img = new Image();
     img.setAttribute('src', urlApache + '/photos/' + filename);
     img.setAttribute('alt', filename);
