@@ -31,13 +31,13 @@ function addImage(container, filename) {
     img.setAttribute('src', urlApache + '/photos/' + filename);
     img.setAttribute('alt', filename);
 
-    img.onload = function () {
-        container.insertBefore(img, container.firstChild);
+    // img.onload = function () {
+    container.insertBefore(img, container.firstChild);
 
-        while (container.children.length > 6) {
-            container.removeChild(container.lastElementChild);
-        }
-    };
+    while (container.children.length > 6) {
+        container.removeChild(container.lastElementChild);
+    }
+    // };
 }
 
 window.onload = function () {
