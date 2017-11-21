@@ -28,16 +28,17 @@ function addImage(container, filename) {
     console.log('Add new image to container:' + filename);
 
     let img = new Image();
+
+    img.onload = function () {
+        container.insertBefore(img, container.firstChild);
+
+        while (container.children.length > 6) {
+            container.removeChild(container.lastElementChild);
+        }
+    };
+
     img.setAttribute('src', urlApache + '/photos/' + filename);
     img.setAttribute('alt', filename);
-
-    // img.onload = function () {
-    container.insertBefore(img, container.firstChild);
-
-    while (container.children.length > 6) {
-        container.removeChild(container.lastElementChild);
-    }
-    // };
 }
 
 window.onload = function () {
