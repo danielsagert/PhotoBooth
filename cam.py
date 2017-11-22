@@ -111,7 +111,8 @@ def get_filenames(last_filename):
         if filename == last_filename:
             break
 
-        print('File: ', f, ', size: ' + os.path.getsize(f))
+        print('File: ', f)
+        print('Size: ' + os.path.getsize(os.path.abspath(f)))
 
         filenames.append(filename)
 
