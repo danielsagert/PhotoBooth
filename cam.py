@@ -100,6 +100,8 @@ def get_filenames(last_filename):
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
 
+    files = list(filter(lambda x: os.stat(x).st_size > 0, files))
+
     # Keep only the last x files
     del files[MAX_FILES:]
 
