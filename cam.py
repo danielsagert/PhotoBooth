@@ -100,6 +100,7 @@ def get_filenames(last_filename):
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
 
+    # Remove file which are not completely written yet (size 0)
     files = list(filter(lambda x: os.stat(x).st_size > 0, files))
 
     # Keep only the last x files
@@ -112,9 +113,6 @@ def get_filenames(last_filename):
 
         if filename == last_filename:
             break
-
-        print('File: ', f)
-        print('Size: ', os.stat(f).st_size)
 
         filenames.append(filename)
 
