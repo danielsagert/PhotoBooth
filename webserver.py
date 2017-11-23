@@ -13,7 +13,6 @@ def apply_headers(response):
 
 @app.route('/')
 def index():
-    print('Deliver index page')
     return app.send_static_file('index.html')
 
 
