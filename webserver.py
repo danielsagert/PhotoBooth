@@ -16,6 +16,11 @@ def index():
     return app.send_static_file('flashback.html')
 
 
+@app.route('/summary')
+def index():
+    return app.send_static_file('summary.html')
+
+
 @app.route('/capture')
 def capture():
     filename = cam.shoot()
