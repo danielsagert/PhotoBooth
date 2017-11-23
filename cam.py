@@ -98,7 +98,7 @@ def get_filenames(limit):
     files = list(filter(lambda x: os.stat(x).st_size > 0, files))
 
     # Keep only the last x files
-    del files[limit:]
+    del files[int(limit):]
 
     # Get all filenames until all new files are collected
     filenames = []
