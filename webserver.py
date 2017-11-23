@@ -22,12 +22,6 @@ def summary():
     return app.send_static_file('summary.html')
 
 
-@app.route('/capture')
-def capture():
-    filename = cam.shoot()
-    return flask.jsonify(filename=filename)
-
-
 @app.route('/photos')
 def photos():
     limit = flask.request.args.get('limit')
