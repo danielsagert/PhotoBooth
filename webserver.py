@@ -1,4 +1,5 @@
 import flask
+from PIL import Image
 
 import cam
 
@@ -37,6 +38,16 @@ def photos():
 @app.route('/photos/<filename>')
 def photo(filename):
     return app.send_static_file('photos/' + filename)
+
+
+@app.route('/photos/resize/<filename>')
+def resized_photo(filename):
+    basewidth = 300
+    img = Image.open('photos/' + filename)
+    wpercent = (basewidth / float(img.size[0]))
+    hsize = int((float(img.size[1]) * float(wpercent)))
+    img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+    return flask.send_file(img, as_attachment=True, attachment_filename='resized_' + filename)
 
 
 if __name__ == "__main__":
