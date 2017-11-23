@@ -3,7 +3,9 @@ const MAX_IMAGES = 6;
 const LAST_FILENAMES = [];
 
 function update() {
-    fetch(URL_PHOTOS)
+    let url = URL_PHOTOS + '?limit=' + MAX_IMAGES;
+
+    fetch(url)
         .then(response => response.json())
         .then((json) => {
             for (let i = json.filenames.length - 1; i >= 0; i--) {
