@@ -10,7 +10,6 @@ body {
 #photo-container a {
     flex: auto;
     width: 200px;
-    margin: .5vw;
 }
 
 #photo-container a img {
