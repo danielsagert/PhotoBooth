@@ -35,7 +35,7 @@ def shoot():
     if not os.path.exists(PHOTO_DIRECTORY):
         os.makedirs(PHOTO_DIRECTORY)
 
-    filename = get_filename()
+    filename = generate_filename()
     photo_path = PHOTO_DIRECTORY + filename
 
     with PiCamera() as camera:
@@ -85,17 +85,12 @@ def get_overlay(text):
     return img
 
 
-def get_filename():
+def generate_filename():
     date_and_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     return 'photo_' + date_and_time + '.jpg'
 
 
-def get_filenames(last_filename):
-    if last_filename is None:
-        print('Get all filenames')
-    else:
-        print ('Get all filenames until: ', last_filename)
-
+def get_filenames():
     # Get all JPGs from the photo directory and sort them by timestamp descending
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
@@ -109,24 +104,6 @@ def get_filenames(last_filename):
     # Get all filenames until all new files are collected
     filenames = []
     for f in files:
-        filename = os.path.basename(f)
+        filenames.append(os.path.basename(f))
 
-        if filename == last_filename:
-            break
-
-        filenames.append(filename)
-
-    print('Found ', len(filenames), ' new file(s): ', filenames)
     return filenames
-
-
-def get_last_filename():
-    files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
-
-    if len(files) < 1:
-        return ''
-
-    files.sort(key=os.path.getmtime, reverse=True)
-    latest_file = files[0]
-    filename = os.path.basename(latest_file)
-    return filename

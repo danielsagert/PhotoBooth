@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, request
+import flask
 
-from cam import shoot, get_filenames, get_last_filename
+import cam
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 
 @app.after_request
@@ -19,21 +19,14 @@ def index():
 
 @app.route('/capture')
 def capture():
-    filename = shoot()
-    return jsonify(filename=filename)
+    filename = cam.shoot()
+    return flask.jsonify(filename=filename)
 
 
 @app.route('/photos')
 def photos():
-    last_photo = request.args.get('lastphoto')
-    filenames = get_filenames(last_photo)
-    return jsonify(filenames=filenames)
-
-
-@app.route('/photos/last')
-def last_photo():
-    filename = get_last_filename()
-    return jsonify(filename=filename)
+    filenames = cam.get_filenames()
+    return flask.jsonify(filenames=filenames)
 
 
 if __name__ == "__main__":
