@@ -16,7 +16,7 @@ function addImage(filename) {
     img.setAttribute('src', URL_PHOTOS + '/' + filename);
 
     let link = document.createElement('a');
-    link.setAttribute('href', this.src);
+    link.setAttribute('href', img.src);
     link.appendChild(img);
 
     let container = document.getElementById('photo-container');
