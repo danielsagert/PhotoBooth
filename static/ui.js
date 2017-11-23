@@ -23,7 +23,7 @@ function update() {
 }
 
 function addImage(filename) {
-    console.log('Add new image to container:' + filename);
+    console.log('Add new image: ' + filename);
 
     let img = new Image();
 
