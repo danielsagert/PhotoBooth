@@ -43,7 +43,7 @@ def photo(filename):
 @app.route('/photos/resize/<filename>')
 def resized_photo(filename):
     basewidth = 300
-    img = Image.open('photos/' + filename)
+    img = Image.open('static/photos/' + filename)
     wpercent = (basewidth / float(img.size[0]))
     hsize = int((float(img.size[1]) * float(wpercent)))
     img = img.resize((basewidth, hsize), Image.ANTIALIAS)
