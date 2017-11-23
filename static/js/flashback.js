@@ -37,8 +37,8 @@ function addImage(filename) {
         }
     };
 
-    img.setAttribute('src', URL_PHOTOS + '/' + filename);
     img.setAttribute('alt', filename);
+    img.setAttribute('src', URL_PHOTOS + '/' + filename);
 }
 
 window.onload = function () {
