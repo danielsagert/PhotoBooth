@@ -29,7 +29,7 @@ function addImage(filename) {
 
     img.onload = function () {
         let container = document.getElementById('photo-container');
-        container.insertBefore(img, container.firstChild);
+        container.insertBefore(this, container.firstChild);
 
         // Only keep x images
         while (container.children.length > MAX_IMAGES) {
