@@ -1,11 +1,9 @@
 const hostname = window.location.hostname;
-const urlFlask = 'http://' + hostname + ':8000';
-const urlLastFilenames = urlFlask + '/photos';
-const urlApache = 'http://' + hostname + ':80';
+const urlPhotos = 'http://' + hostname + ':8000/photos';
 const lastFilenames = [];
 
 function update() {
-    fetch(urlLastFilenames)
+    fetch(urlPhotos)
         .then(response => response.json())
         .then((json) => {
             for (let i = json.filenames.length - 1; i >= 0; i--) {
@@ -37,7 +35,7 @@ function addImage(filename) {
         }
     };
 
-    img.setAttribute('src', urlApache + '/photos/' + filename);
+    img.setAttribute('src', urlPhotos + '/' + filename);
     img.setAttribute('alt', filename);
 }
 

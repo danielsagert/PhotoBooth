@@ -29,5 +29,10 @@ def photos():
     return flask.jsonify(filenames=filenames)
 
 
+@app.route('/photos/<filename>')
+def photo(filename):
+    return app.send_static_file('photos/' + filename)
+
+
 if __name__ == "__main__":
     app.run()
