@@ -12,12 +12,12 @@ def apply_headers(response):
 
 
 @app.route('/')
-def index():
+def flashback():
     return app.send_static_file('flashback.html')
 
 
 @app.route('/summary')
-def index():
+def summary():
     return app.send_static_file('summary.html')
 
 
