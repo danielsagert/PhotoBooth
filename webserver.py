@@ -24,7 +24,8 @@ def capture():
 
 @app.route('/photos')
 def photos():
-    filenames = cam.get_filenames()
+    limit = flask.request.args.get('limit')
+    filenames = cam.get_filenames(limit)
     return flask.jsonify(filenames=filenames)
 
 

@@ -1,19 +1,19 @@
-const hostname = window.location.hostname;
-const urlPhotos = 'http://' + hostname + ':8000/photos';
-const lastFilenames = [];
+const URL_PHOTOS = 'http://' + window.location.hostname + ':8000/photos';
+const MAX_IMAGES = 6;
+const LAST_FILENAMES = [];
 
 function update() {
-    fetch(urlPhotos)
+    fetch(URL_PHOTOS)
         .then(response => response.json())
         .then((json) => {
             for (let i = json.filenames.length - 1; i >= 0; i--) {
                 let filename = json.filenames[i];
 
                 // Check if image was already added
-                if (!lastFilenames.includes(filename)) {
+                if (!LAST_FILENAMES.includes(filename)) {
                     // Place new image at first position and add DOM element
-                    lastFilenames.splice(0, 0, filename);
-                    lastFilenames.splice(6);
+                    LAST_FILENAMES.splice(0, 0, filename);
+                    LAST_FILENAMES.splice(MAX_IMAGES);
                     addImage(filename);
                 }
             }
@@ -29,13 +29,13 @@ function addImage(filename) {
         let container = document.getElementById('photo-container');
         container.insertBefore(img, container.firstChild);
 
-        // Only keep 6 images
-        while (container.children.length > 6) {
+        // Only keep x images
+        while (container.children.length > MAX_IMAGES) {
             container.removeChild(container.lastElementChild);
         }
     };
 
-    img.setAttribute('src', urlPhotos + '/' + filename);
+    img.setAttribute('src', URL_PHOTOS + '/' + filename);
     img.setAttribute('alt', filename);
 }
 

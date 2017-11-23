@@ -14,7 +14,6 @@ except ImportError:
     pass
 
 PHOTO_DIRECTORY = '/home/pi/PhotoBooth/static/photos/'
-MAX_FILES = 6
 PHOTO_WIDTH = 2592
 PHOTO_HEIGHT = 1944
 PREVIEW_WIDTH = 1280
@@ -90,7 +89,7 @@ def generate_filename():
     return 'photo_' + date_and_time + '.jpg'
 
 
-def get_filenames():
+def get_filenames(limit):
     # Get all JPGs from the photo directory and sort them by timestamp descending
     files = glob.glob(PHOTO_DIRECTORY + '*.jpg')
     files.sort(key=os.path.getmtime, reverse=True)
@@ -99,7 +98,7 @@ def get_filenames():
     files = list(filter(lambda x: os.stat(x).st_size > 0, files))
 
     # Keep only the last x files
-    del files[MAX_FILES:]
+    del files[limit:]
 
     # Get all filenames until all new files are collected
     filenames = []
