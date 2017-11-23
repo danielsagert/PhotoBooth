@@ -13,7 +13,7 @@ except ImportError:
     print('picamera not available')
     pass
 
-PHOTO_DIRECTORY = '/home/pi/PhotoBooth/static/photos'
+PHOTO_DIRECTORY = '/home/pi/PhotoBooth/static/photos/'
 MAX_FILES = 6
 PHOTO_WIDTH = 2592
 PHOTO_HEIGHT = 1944
