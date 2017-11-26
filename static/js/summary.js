@@ -13,10 +13,10 @@ function update() {
 function addImage(filename) {
     let img = new Image();
     img.setAttribute('alt', filename);
-    img.setAttribute('src', URL_PHOTOS + '/' + filename);
+    img.setAttribute('src', URL_PHOTOS + '/resize/' + filename);
 
     let link = document.createElement('a');
-    link.setAttribute('href', img.src);
+    link.setAttribute('href', URL_PHOTOS + '/' + filename);
     link.appendChild(img);
 
     let main = document.querySelector('main');
