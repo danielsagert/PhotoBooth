@@ -36,8 +36,8 @@ def photo(filename):
 
 @app.route('/photos/thumbnail/<filename>')
 def thumbnail(filename):
-    path = resizer.get_thumbnail_path(filename)
-    return app.send_static_file(path)
+    resizer.create_thumbnail(filename)
+    return app.send_static_file('photos/thumbnails/' + filename)
 
 
 if __name__ == "__main__":

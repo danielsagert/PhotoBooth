@@ -6,7 +6,7 @@ from logger import log
 from settings import PHOTO_DIRECTORY, THUMBNAIL_DIRECTORY
 
 
-def get_thumbnail_path(filename):
+def create_thumbnail(filename):
     path_original = PHOTO_DIRECTORY + filename
     path_thumbnail = THUMBNAIL_DIRECTORY + filename
 
@@ -18,5 +18,3 @@ def get_thumbnail_path(filename):
         height = int((float(image.size[1]) * float(width_percent)))
         image = image.resize((width, height), Image.ANTIALIAS)
         image.save(path_thumbnail, 'JPEG')
-
-    return path_thumbnail
