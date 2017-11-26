@@ -6,12 +6,13 @@ from time import sleep
 from PIL import Image, ImageDraw, ImageFont
 
 import led
+from logger import log
 from settings import PHOTO_DIRECTORY, PREVIEW_WIDTH, PREVIEW_HEIGHT, PHOTO_WIDTH, PHOTO_HEIGHT
 
 try:
     from picamera import PiCamera
 except ImportError:
-    print('picamera not available')
+    log('picamera not available')
     pass
 
 ready = True
@@ -21,7 +22,7 @@ def shoot():
     global ready
 
     if not ready:
-        print('Camera is not ready yet')
+        log('Camera is not ready yet')
         return
 
     ready = False
@@ -49,7 +50,7 @@ def shoot():
                                          format='rgb')
             sleep(1)
 
-        print('Capture...')
+        log('Capture...')
 
         led.on('permanent')
         camera.remove_overlay(overlay)
@@ -63,7 +64,7 @@ def shoot():
         camera.resolution = (PHOTO_WIDTH, PHOTO_HEIGHT)
         camera.capture(photo_path)
 
-    print('Photo captured: ', photo_path)
+    log('Photo captured: ', photo_path)
     led.off()
     ready = True
     return filename
