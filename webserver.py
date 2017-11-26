@@ -34,9 +34,9 @@ def photo(filename):
     return app.send_static_file('photos/' + filename)
 
 
-@app.route('/photos/resize/<filename>')
-def resized_photo(filename):
-    path = resizer.resize_image(filename)
+@app.route('/photos/thumbnail/<filename>')
+def thumbnail(filename):
+    path = resizer.get_thumbnail_path(filename)
     return app.send_static_file(path)
 
 
