@@ -6,5 +6,5 @@ cd /home/pi/PhotoBooth/
 
 mkdir -p logs
 
-sudo python ./control.py 2>&1 | tee logs/control.log &
-sudo gunicorn --bind 0.0.0.0:8000 --workers 10 webserver:app 2>&1 | tee logs/webserver.log
+sudo python ./control.py >> logs/control.log 2>&1 &
+sudo gunicorn --bind 0.0.0.0:8000 --workers 10 webserver:app >> logs/webserver.log 2>&1
