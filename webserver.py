@@ -36,8 +36,8 @@ def photo(filename):
 
 @app.route('/photos/resize/<filename>')
 def resized_photo(filename):
-    resized = resizer.resize_image(filename)
-    return flask.send_file(resized, mimetype='image/jpeg')
+    path = resizer.resize_image(filename)
+    return app.send_static_file(path)
 
 
 if __name__ == "__main__":
