@@ -12,7 +12,7 @@ Shows all pictures stored in the file system as thumbnails.
 Opens full-sized image on click.
 
 ### Trigger capture
-The PiFace Digital 2 switch S0 (or connected Switch) triggers the capture.  
+The PiFace Digital 2 switch S0 (or connected switch) triggers the capture.  
 Countdown will appear and photo will be taken after three seconds.  
 
 ## Setup
