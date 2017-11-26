@@ -1,2 +1,2 @@
 #!/bin/sh
-chromium-browser --kiosk http://localhost:8000/
+chromium-browser --kiosk --incognito http://localhost:8000/
