@@ -1,6 +1,7 @@
 import flask
 
 import cam
+import resizer
 
 app = flask.Flask(__name__)
 
@@ -35,7 +36,7 @@ def photo(filename):
 
 @app.route('/photos/resize/<filename>')
 def resized_photo(filename):
-    resized = cam.get_resized_image(filename)
+    resized = resizer.resize_image(filename)
     return flask.send_file(resized, mimetype='image/jpeg')
 
 

@@ -1,12 +1,12 @@
 import glob
 import os
 from datetime import datetime
-from io import BytesIO
 from time import sleep
 
 from PIL import Image, ImageDraw, ImageFont
 
 import led
+from settings import PHOTO_DIRECTORY, PREVIEW_WIDTH, PREVIEW_HEIGHT, PHOTO_WIDTH, PHOTO_HEIGHT
 
 try:
     from picamera import PiCamera
@@ -14,11 +14,6 @@ except ImportError:
     print('picamera not available')
     pass
 
-PHOTO_DIRECTORY = '/home/pi/PhotoBooth/static/photos/'
-PHOTO_WIDTH = 2592
-PHOTO_HEIGHT = 1944
-PREVIEW_WIDTH = 1280
-PREVIEW_HEIGHT = 1024
 ready = True
 
 
@@ -108,16 +103,3 @@ def get_filenames(limit):
         filenames.append(os.path.basename(f))
 
     return filenames
-
-
-def get_resized_image(filename):
-    width = 300
-    image = Image.open('static/photos/' + filename)
-    width_percent = (width / float(image.size[0]))
-    height = int((float(image.size[1]) * float(width_percent)))
-    image = image.resize((width, height), Image.ANTIALIAS)
-
-    byte_io = BytesIO()
-    image.save(byte_io, "JPEG", quality=80, optimize=True, progressive=True)
-    byte_io.seek(0)
-    return byte_io
