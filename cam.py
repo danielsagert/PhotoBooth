@@ -57,6 +57,7 @@ def shoot():
         overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
         sleep(1)
 
+        led.on('permanent')
         camera.remove_overlay(overlay)
         camera.stop_preview()
         camera.hflip = False
