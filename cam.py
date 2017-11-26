@@ -64,7 +64,7 @@ def shoot():
         camera.resolution = (PHOTO_WIDTH, PHOTO_HEIGHT)
         camera.capture(photo_path)
 
-    log('Photo captured: ', photo_path)
+    log('Photo captured: ' + photo_path)
     led.off()
     ready = True
     return filename
