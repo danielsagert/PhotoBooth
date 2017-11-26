@@ -1,5 +1,20 @@
 # PhotoBooth
 
+## Functionality
+### Flashback view
+[http://localhost:8000/](http://localhost:8000/)  
+Shows at best the last six pictures depending on the screen size.  
+The view will automatically be updated as soon as a new image is available.
+
+### Summary view
+[http://localhost:8000/summary](http://localhost:8000/summary)  
+Shows all pictures stored in the file system as thumbnails.  
+Opens full-sized image on click.
+
+### Trigger capture
+The PiFace Digital 2 switch S0 (or connected Switch) triggers the capture.  
+Countdown will appear and photo will be taken after three seconds.  
+
 ## Setup
 ### Clone project
 ```
@@ -9,7 +24,7 @@ cd /home/pi/PhotoBooth
 chmod +x *.sh
 ```
 
-### Raspi Config
+### Raspi config
 ```
 sudo raspi-config
 ```
@@ -23,12 +38,12 @@ sudo raspi-config
 sudo apt-get install python-picamera
 ```
 
-### Python Modules
+### Python modules
 ```
 sudo pip install flask, picamera, gunicorn, pifacedigitalio, pifacecommon
 ```
 
-### Install PiFace Digital Modules ###
+### Install PiFace Digital 2 modules ###
 ```
 sudo apt-get install python3-pifacedigitalio
 sudo apt-get install python3-pifacedigital-emulator
