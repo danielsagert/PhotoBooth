@@ -4,9 +4,9 @@
 ### Clone project
 ```
 cd /home/pi
-sudo git clone https://github.com/danielsagert/PhotoBooth.git
-sudo chmod +x start-server.sh
-sudo chmod +x start-ui.sh
+git clone https://github.com/danielsagert/PhotoBooth.git
+chmod +x start-server.sh
+chmod +x start-ui.sh
 ```
 
 ### Raspi Config
