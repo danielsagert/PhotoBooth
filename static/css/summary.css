@@ -2,17 +2,17 @@ body {
     margin: 0;
 }
 
-#photo-container {
+main {
     display: flex;
     flex-flow: row wrap;
 }
 
-#photo-container a {
+main a {
     flex: auto;
     width: 200px;
 }
 
-#photo-container a img {
+main a img {
     width: 100%;
     height: auto;
 }

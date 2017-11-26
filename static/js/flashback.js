@@ -28,12 +28,12 @@ function addImage(filename) {
     let img = new Image();
 
     img.onload = function () {
-        let container = document.getElementById('photo-container');
-        container.insertBefore(this, container.firstChild);
+        let main = document.querySelector('main');
+        main.insertBefore(this, main.firstChild);
 
         // Only keep x images
-        while (container.children.length > MAX_IMAGES) {
-            container.removeChild(container.lastElementChild);
+        while (main.children.length > MAX_IMAGES) {
+            main.removeChild(main.lastElementChild);
         }
     };
 

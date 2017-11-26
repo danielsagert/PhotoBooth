@@ -3,16 +3,16 @@ body {
     overflow: hidden;
 }
 
-#photo-container img {
+main img {
     box-sizing: border-box;
 }
 
-#photo-container img:first-child {
+main img:first-child {
     float: left;
     height: 100vh;
 }
 
-#photo-container img:not(:first-child) {
+main img:not(:first-child) {
     float: left;
     width: calc(100vw - (100vh / 3 * 4));
 }

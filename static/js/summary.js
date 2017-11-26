@@ -19,8 +19,8 @@ function addImage(filename) {
     link.setAttribute('href', img.src);
     link.appendChild(img);
 
-    let container = document.getElementById('photo-container');
-    container.appendChild(link);
+    let main = document.querySelector('main');
+    main.appendChild(link);
 }
 
 window.onload = function () {
