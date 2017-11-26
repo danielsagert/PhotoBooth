@@ -1,5 +1,5 @@
 const URL_PHOTOS = 'http://' + window.location.hostname + ':8000/photos';
-const URL_THUMBNAILS = URL_PHOTOS + 'thumbnail';
+const URL_THUMBNAILS = URL_PHOTOS + '/' + 'thumbnail';
 
 function update() {
     fetch(URL_PHOTOS)
