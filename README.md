@@ -5,8 +5,8 @@
 ```
 cd /home/pi
 git clone https://github.com/danielsagert/PhotoBooth.git
-chmod +x start-server.sh
-chmod +x start-ui.sh
+cd /home/pi/PhotoBooth
+chmod +x *.sh
 ```
 
 ### Raspi Config
