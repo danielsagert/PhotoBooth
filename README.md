@@ -34,34 +34,6 @@ sudo apt-get install python3-pifacedigitalio
 sudo apt-get install python3-pifacedigital-emulator
 ```
 
-### Install and setup samba
-```
-sudo apt-get install samba samba-common-bin
-```
-
-```
-sudo nano /etc/samba/smb.conf
-```
-
-Comment out `[homes]` section and add new share:
-
-```
-security = user
-
-[PhotoBooth Photos]
-path = /home/pi/PhotoBooth/static/photos
-writeable = yes
-guest ok = no
-```
-
-```
-sudo smbpasswd -a pi
-```
-
-```
-sudo /etc/init.d/samba restart
-```
-
 #### Configure kiosk mode
 ```
 sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
