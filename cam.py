@@ -50,8 +50,6 @@ def shoot():
                                          format='rgb')
             sleep(1)
 
-        log('Capture...')
-
         camera.remove_overlay(overlay)
         overlay_img = get_overlay('Smile!')
         overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
@@ -62,6 +60,8 @@ def shoot():
         camera.stop_preview()
         camera.hflip = False
         camera.resolution = (PHOTO_WIDTH, PHOTO_HEIGHT)
+        
+        log('Capture...')
         camera.capture(photo_path)
 
     log('Photo captured: ' + photo_path)
