@@ -1,3 +1,4 @@
+import os
 import sys
 import thread
 import time
@@ -21,11 +22,17 @@ def button2_pressed(event):
     shutdown = True
 
 
+def button3_pressed(event):
+    log('Button 3 pressed - reboot system...')
+    os.system('reboot')
+
+
 def monitor_buttons():
     piface = pfio.PiFaceDigital()
     listener = pfio.InputEventListener(chip=piface)
     listener.register(0, pfio.IODIR_FALLING_EDGE, button1_pressed)
     listener.register(1, pfio.IODIR_FALLING_EDGE, button2_pressed)
+    listener.register(2, pfio.IODIR_FALLING_EDGE, button3_pressed)
     listener.activate()
     log("Button 1 listener activated")
 
