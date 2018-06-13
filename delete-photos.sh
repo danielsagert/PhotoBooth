@@ -1,2 +1,2 @@
-rm /home/pi/PhotoBooth/static/photos/*.jpg
-rm /home/pi/PhotoBooth/static/photos/thumbnails/*.jpg
+sudo rm /home/pi/PhotoBooth/static/photos/*.jpg
+sudo rm /home/pi/PhotoBooth/static/photos/thumbnails/*.jpg
