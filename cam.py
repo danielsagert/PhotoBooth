@@ -16,6 +16,7 @@ except ImportError:
     pass
 
 ready = True
+overlays = {}
 
 
 def shoot():
@@ -71,6 +72,9 @@ def shoot():
 
 
 def get_overlay(text):
+    if text in overlays:
+        return overlays[text]
+
     font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 400)
     img = Image.new('RGB', (PREVIEW_WIDTH, PREVIEW_HEIGHT))
     draw = ImageDraw.Draw(img)
@@ -78,6 +82,7 @@ def get_overlay(text):
     x = (PREVIEW_WIDTH - text_x) / 2
     y = (PREVIEW_HEIGHT - text_y) / 2
     draw.text((x, y), text, font=font, fill=(255, 0, 0))
+    overlays[text] = img
     return img
 
 
