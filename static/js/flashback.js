@@ -44,4 +44,9 @@ function addImage(filename) {
 window.onload = function () {
     update();
     setInterval(update, 1000);
+
+    // Reload site every minute to delete cached images
+    setInterval(function () {
+        window.location.reload(true);
+    }, 60000);
 };
