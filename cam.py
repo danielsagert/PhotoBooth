@@ -5,6 +5,7 @@ from time import sleep
 
 from PIL import Image, ImageDraw, ImageFont
 
+import led
 from logger import log
 from settings import PHOTO_DIRECTORY, PREVIEW_WIDTH, PREVIEW_HEIGHT, PHOTO_WIDTH, PHOTO_HEIGHT
 
@@ -26,6 +27,7 @@ def shoot():
         return
 
     ready = False
+    led.on('fast')
 
     if not os.path.exists(PHOTO_DIRECTORY):
         os.makedirs(PHOTO_DIRECTORY)
@@ -54,6 +56,7 @@ def shoot():
         overlay = camera.add_overlay(overlay_img.tostring(), layer=3, size=overlay_img.size, alpha=128, format='rgb')
         sleep(1)
 
+        led.on('permanent')
         camera.remove_overlay(overlay)
         camera.stop_preview()
         camera.hflip = False
@@ -63,6 +66,7 @@ def shoot():
         camera.capture(photo_path)
 
     log('Photo captured: ' + photo_path)
+    led.off()
     ready = True
     return filename
 
